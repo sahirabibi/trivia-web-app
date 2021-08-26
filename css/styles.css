@@ -51,7 +51,21 @@ header,
 	justify-content: space-between;
 }
 
+#options, #start {
+    border-radius: 10%;
+    padding: 10px 15px;
+    height:fit-content;
+    width: fit-content;
+    border: none;
+    outline: none;
+    background-color: cornflowerblue;
+    color: white;
+}
+
 /* Modal */
+#start-modal {
+    display:block;
+}
 
 .modal {
 	background-color: rgba(0,0,0,0.4);
@@ -65,15 +79,21 @@ header,
 }
 
 .modal-content {
-    background-color: beige;
+    text-align: center;
+    background-color: #f1ebe1;
     height: 400px;
     width: 400px;
     border-radius: 20%;
     margin: 200px auto;
-    padding: 20px 20px 0 20px;
+    padding: 20px 20px 0 30px;
+    line-height: 1.5;
+    color: #371b77;
     
 }
 
-#start-modal {
-    display:none;
+#modal-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    margin-top: 40px;
 }
