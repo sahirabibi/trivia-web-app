@@ -19,12 +19,14 @@ let currentScore = 0;
 // GET options button
 // GET div containing all answer choices 
 
-// Hide and Show Start Modal
+/*---- Hide and Show Start Modal -----*/
 // grab modal class
 const startModal = document.querySelector("#start-modal")
-// set event DOMonLoad
-window.onload("DOM")
 // grab start button
+const startBtn = document.querySelector("#start");
+// add event listener to start button to close modal and begin game
+startBtn.addEventListener("click", () => {
+    toggleModal(startModal)})
 
 
 
@@ -87,7 +89,13 @@ class Game {
 
 }
 
-
+function toggleModal(targetModal) {
+	if ((targetModal.style.display === 'none')) {
+		targetModal.style.display = 'block';
+	} else {
+		targetModal.style.display = 'none';
+	}
+}
 
 
 /////////////////// GAME LOGIC ///////////////////////
