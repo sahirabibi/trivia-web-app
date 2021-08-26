@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>TRIVIA</title>
+</head>
+<body>  
+    <header>
+        <h1>TRIVIA</h1>
+    </header>
+    <div class="dashboard">
+        <button id="options">Options</button>
+        <h3 id="score">Score</h3>
+    </div>
+    <div class="main">
+        <div class="topic">
+            <h2 id="topic-title">Topic</h2>
+            <h3 id="current-topic">Current Topic</h3>
+        </div>
+        <div class="current-question">
+            <h3>Question</h3>
+            <h4 id="question">This is the current question</h4>
+        </div>
+        <div class="container" id="answers">
+            <button class="answer-choice" id="A">A</button>
+            <button class="answer-choice" id="B">B</button>
+            <button class="answer-choice" id="C">C</button>
+            <button class="answer-choice" id="D">D</button>
+        </div>    
+    </div>
+    <div class="modal" id="start-modal">
+        <div class="modal-content">
+            <h2>Lets Play Trivia!</h2>
+            <div class="modal-textbook">
+                <p>Trivia is a game where a user is asked a series of ten questions on the given topic of choice. In this case, its
+                    Computer Science!</p>
+                <p>Each question comes with four multiple choice options</p>
+                <p>For each question a user gets correct, they are awarded a point!</p>
+                <p>See how many you can get right!</p>
+            </div>
+            <button id="start">Start</button>
+        </div>
+    </div>
+
+    <!-- JS SCRIPT START -->
+    <script src="js/script.js"></script>
+</body>
+</html>
