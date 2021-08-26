@@ -40,7 +40,7 @@ class Data {
     }
 
     getData() {
-        // stores fetched data
+        // stores fetched data in var
     }
 
     formatData() {
