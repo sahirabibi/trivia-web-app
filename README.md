@@ -18,15 +18,15 @@ Trivia is a game that tests users knowledge about computer science with ten mult
 - As a user, I want to be able to have a reset button so that I may play again. 
 
 ### Stretch Goals
-## Bronze
+*** Bronze ***
 - As a user, I would like to be able to pick between categories of topics so that I can have more topics to test my knowledge.
 - As a user, I would like to be able to choose my level of difficulty when I play the trivia game so that I can control how difficult the questions are.
 - As a user, I would like to be able to decide how many questions I am being tested with.
 
-## Silver
+*** Silver ***
 - As a user, I would like to have a high score sheet that keeps track of my score on all my attempts so that I can see if by knowledge is improving. 
 - As a user, I would like to have timed rounds so I may see how quickly I can answer the given questions. 
 
 
-## Gold
+*** Gold ***
 - As a user, I would like to be able to share my score on facebook so that my friends and family can see how good my knowledge is.
