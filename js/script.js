@@ -21,7 +21,7 @@ function getQuestions() {
 };
 
 function displayQuestion() {
-    // accesses object and displays a question to user with MC answers
+    // access object and displays a question to user with MC answers
 }
 
 function checkAnswer() {

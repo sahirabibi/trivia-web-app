@@ -1,5 +1,6 @@
 body {
     height: 100%;
+    padding: 50px;
 }
 
 header, .topic, .main {
@@ -19,10 +20,14 @@ header, .topic, .main {
 
 
 .container {
-    margin: 50px;
+    padding-right: -200px;
+    width: 100%;
+    margin-right: 50px;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-evenly;
+    align-content: center;
     order: 2;
     
 }
@@ -36,21 +41,17 @@ header, .topic, .main {
 }
 
 .answer-choice {
-    margin: 50px;
-    height: 20px;
-    width: 50px;
+    /* margin: 50px; */
+    position: relative;
+    height: 10px;
+    width: 60%;
+    padding: 17px;
+    margin-bottom: 3%;
+
     
 }
-.scoreboard {
-    padding-right: 100px;
+.dashboard {
     display: flex;
-    justify-content: flex-end;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    order: 4;
-    align-items: center;
-    padding-bottom: 50px;
+    flex-direction: row;
+    justify-content: space-around;
 }

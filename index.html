@@ -11,15 +11,17 @@
     <header>
         <h1>TRIVIA</h1>
     </header>
-    <div class="topic">
-        <h2 id="topic-title">Topic</h2>
-        <h3 id="current-topic">Current Topic</h3>
-    </div>
-    <div class="scoreboard">
-        <h3>Score</h3>
+    <div class="dashboard">
+        <button id="options">Options</button>
+        <h3 id="score">Score</h3>
     </div>
     <div class="main" id="questions">
+        <div class="topic">
+            <h2 id="topic-title">Topic</h2>
+            <h3 id="current-topic">Current Topic</h3>
+        </div>
         <div class="current-question">
+            <h3>Question</h3>
             <h4>This is the current question</h4>
         </div>
         <div class="container" id="answers">
@@ -29,9 +31,7 @@
             <button class="answer-choice" id="D">D</button>
         </div>
     
-        <div class="buttons">
-            <button>Restart Game</button>
-        </div>
+        
     </div>
     <script src="js/script.js"></script>
 </body>
