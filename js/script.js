@@ -38,7 +38,10 @@ function init(url) {
 	// triggers call to API via getData
 	currentScore = 0;
 	questionNum = 0;
-	getData(url);
+	getData(url).then((res) => {
+		console.log(questionsDB);
+		render(questionsDB[questionNum]);
+	});
     console.log(questionsDB)
 	render(questionsDB[questionNum]);
 }
@@ -50,14 +53,14 @@ console.log(questionsDB)
 function getData(url) {
 	// use url to fetch data
 	// send data to formatData() to render it on page
-	fetch(url)
+	return (fetch(url)
 		.then((res) => res.json())
 		.then((res) => {
 			createQuestions(res.results);
 		})
 		.catch((error) => {
 			console.log('Something went wrong.', error);
-		});
+		}));
 }
 
 function createQuestions(results) {
@@ -68,7 +71,7 @@ function createQuestions(results) {
 }
 
 
-/* ------ Render Game and Check Progres ----- */
+/* ------ Render Game and Check Progress ----- */
 
 function render(question) {
 	console.log(question);
