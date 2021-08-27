@@ -53,7 +53,6 @@ function createQuestions(data) {
         );
 }
 
-
 function displayQuestion(question) {
         // displays a single question and its choices
     }
@@ -63,37 +62,20 @@ function checkAnswer(userChoice, correct_answer) {
 	}
 
 
-class Question {
-    // creates a single question obj and randomizes the answer choices before sending obj to questions array
-    constructor(text, answers, correct) {
-        this.text = text;
-        this.answers = answers;
-        this.correct = correct  
-        // add correct answer to random location in array
-        let ranNum = Math.floor(Math.random() * 4)
-        answers.splice(ranNum, 0, correct);
-        // create new question obj
-        this.question = {"text": text, "answers": answers, "correct": this.correct}  
-        // add question to the questions array
-        questions.push(this.question);
-    }
-}
-
-class Game {
     // triggered after each round to check if game is over
-    static isGameOver() {
+function isGameOver() {
         // checks remainingQuestions is greater than 0
         // if true, triggers playAgain
 
     }
 
-    static playAgain() {
+function playAgain() {
         // displays modal asking user to play again and final score
         // if playAgain 
             // calls ResetGame
     }
 
-    static startGame(url) {
+function startGame(url) {
         // triggers call to API via Data 
         // sets score to 0
         // sets remainingQuestions to 0
@@ -103,13 +85,27 @@ class Game {
 
     }
 
-}
-
 function toggleModal(targetModal) {
 	if ((targetModal.style.display === 'none')) {
 		targetModal.style.display = 'block';
 	} else {
 		targetModal.style.display = 'none';
+	}
+}
+
+class Question {
+	// creates a single question obj and randomizes the answer choices before sending obj to questions array
+	constructor(text, answers, correct) {
+		this.text = text;
+		this.answers = answers;
+		this.correct = correct;
+		// add correct answer to random location in array
+		let ranNum = Math.floor(Math.random() * 4);
+		answers.splice(ranNum, 0, correct);
+		// create new question obj
+		this.question = { text: text, answers: answers, correct: this.correct };
+		// add question to the questions array
+		questions.push(this.question);
 	}
 }
 
