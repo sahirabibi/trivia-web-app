@@ -5,11 +5,12 @@ const questions = {};
 // url takes three params: category #, difficulty, and type = [easy, medium, hard]
 let api_url =
 	'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
-let paramsObj = {"category": "18", "type": "multiple", "difficulty": "easy"} 
-let currentQuestion = {};
-let remainingQuestions = 10;
-let currentScore = 0;
+// let paramsObj = {"category": "18", "type": "multiple", "difficulty": "easy"} 
 
+/* ---- app's state variables ---- */
+let currentQuestion;
+let remainingQuestions;
+let currentScore;
 
 
 /*----  Cached DOM Elements --- */
@@ -23,12 +24,12 @@ const currentQ = document.querySelector("#question");
 const answers = document.querySelector("#answers");
 
 
-/*---- Hide and Show Start Modal -----*/
+/*- Hide and Show Start Modal -*/
 // add event listener to start button to close modal and begin game
 startBtn.addEventListener("click", () => {
     toggleModal(startModal);
-    // get api data 
-    Data(api_url, paramsObj);
+    // initialize game
+    Game.startGame();
 })
 
 
@@ -37,17 +38,26 @@ startBtn.addEventListener("click", () => {
 
 class Data {
     // sends request to API to generate an object containing ten questions and answers
-    constructor(url, paramsObj) {
-        // takes a url and obj of params to modify api request
+    constructor(url) {
+        // takes an api url
+        this.url = url;
+
         
     }
 
     getData() {
-        // stores fetched data in var
+        // use url to fetch data
+        // send data to formatData() to render it on page
+        fetch(this.url)
+            .then(res => res.json())
+            .then(res => this.formatData(res))
+            .catch(error => {console.log("Something went wrong.", error)})
     }
 
-    formatData() {
+    formatData(data) {
         // formats each question and answer in the data so answer order is different each time
+        // go through the array
+        // get first element in array
     }
 
 
@@ -83,10 +93,13 @@ class Game {
             // calls ResetGame
     }
 
-    static resetGame() {
+    static startGame() {
         // triggers call to API via Data 
-        // resets score to 0
-        // resets remainingQuestions to 0
+        // sets score to 0
+        // sets remainingQuestions to 0
+        currentScore = 0;
+        remainingQuestions = 10;
+        Data(url);
 
     }
 
