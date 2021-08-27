@@ -1,13 +1,14 @@
 // Global Variables 
-const questions = {};
+const api_url =
+	'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
 
 // State Variables 
 // url takes three params: category #, difficulty, and type = [easy, medium, hard]
-let api_url =
-	'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
+
 // let paramsObj = {"category": "18", "type": "multiple", "difficulty": "easy"} 
 
 /* ---- app's state variables ---- */
+let questions = [];
 let currentQuestion;
 let remainingQuestions;
 let currentScore;
@@ -29,54 +30,53 @@ const answers = document.querySelector("#answers");
 startBtn.addEventListener("click", () => {
     toggleModal(startModal);
     // initialize game
-    Game.startGame();
+    Game.startGame(api_url);
 })
 
 
 
-/*---- Classes and Methods -----*/
+/*---- Functions -----*/
 
-class Data {
-    // sends request to API to generate an object containing ten questions and answers
-    constructor(url) {
-        // takes an api url
-        this.url = url;
-
-        
-    }
-
-    getData() {
+function getData(url) {
         // use url to fetch data
         // send data to formatData() to render it on page
-        fetch(this.url)
+        fetch(url)
             .then(res => res.json())
-            .then(res => this.formatData(res))
+            .then(res => this.createQuestions(res.results))
             .catch(error => {console.log("Something went wrong.", error)})
     }
 
-    formatData(data) {
-        // formats each question and answer in the data so answer order is different each time
-        // go through the array
-        // get first element in array
-    }
+function createQuestions(data) {
+        // create a new question obj for each element in api results
+        data.forEach((q) =>
+            new Question(q.question, q.incorrect_answers, q.correct_answer)
+        );
+}
 
 
-};
-
-class Quiz {
-	// access object and displays a question to user with MC answers
-	constructor(data) {
-		// takes formatted data and creates variables for one question
-	}
-
-	displayQuestion(question, answer) {
+function displayQuestion(question) {
         // displays a single question and its choices
     }
 
-	checkAnswer() {
+function checkAnswer(userChoice, correct_answer) {
 		// checks if users choice is correct
 	}
 
+
+class Question {
+    // creates a single question obj and randomizes the answer choices before sending obj to questions array
+    constructor(text, answers, correct) {
+        this.text = text;
+        this.answers = answers;
+        this.correct = correct  
+        // add correct answer to random location in array
+        let ranNum = Math.floor(Math.random() * 4)
+        answers.splice(ranNum, 0, correct);
+        // create new question obj
+        this.question = {"text": text, "answers": answers, "correct": this.correct}  
+        // add question to the questions array
+        questions.push(this.question);
+    }
 }
 
 class Game {
@@ -93,13 +93,13 @@ class Game {
             // calls ResetGame
     }
 
-    static startGame() {
+    static startGame(url) {
         // triggers call to API via Data 
         // sets score to 0
         // sets remainingQuestions to 0
         currentScore = 0;
         remainingQuestions = 10;
-        Data(url);
+        getData(url);
 
     }
 
