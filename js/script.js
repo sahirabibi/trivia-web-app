@@ -12,25 +12,28 @@ let currentScore = 0;
 
 
 
-// Cached DOM Elements
-// GET START button
-// GET user click on answer choice
-// GET scoreboard to access current score 
-// GET options button
-// GET div containing all answer choices 
+/*----  Cached DOM Elements --- */
+
+const startModal = document.querySelector("#start-modal")
+const startBtn = document.querySelector("#start");
+const optionsBtn = document.querySelector("#options");
+const score = document.querySelector("#score");
+const currentTopic = document.querySelector("#current-topic");
+const currentQ = document.querySelector("#question");
+const answers = document.querySelector("#answers");
+
 
 /*---- Hide and Show Start Modal -----*/
-// grab modal class
-const startModal = document.querySelector("#start-modal")
-// grab start button
-const startBtn = document.querySelector("#start");
 // add event listener to start button to close modal and begin game
 startBtn.addEventListener("click", () => {
-    toggleModal(startModal)})
+    toggleModal(startModal);
+    // get api data 
+    Data(api_url, paramsObj);
+})
 
 
 
-// Classes and Methods
+/*---- Classes and Methods -----*/
 
 class Data {
     // sends request to API to generate an object containing ten questions and answers
@@ -101,7 +104,7 @@ function toggleModal(targetModal) {
 /////////////////// GAME LOGIC ///////////////////////
 // API DATA:
 // "results" : [obj, obj, obj]
-// "category": "science computers"
+// "category": "science: computers"
 // "question": "str"
 // "correct_answer": "str"
 // "incorrect_answer": ["str", "str", "str"]
