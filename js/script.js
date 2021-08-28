@@ -1,6 +1,8 @@
 // Global Variables
-const api_url =
+const url =
 	'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
+
+
 
 // State Variables
 // url takes three params: category #, difficulty, and type = [easy, medium, hard]
@@ -28,9 +30,10 @@ const answers = document.querySelector('#answers');
 startBtn.addEventListener('click', () => {
 	toggleModal(startModal);
 	// initialize game
-	init(api_url);
 	// displayQuestion(questions)
+    init(url);
 });
+
 
 /*---- Functions -----*/
 
@@ -39,14 +42,10 @@ function init(url) {
 	currentScore = 0;
 	questionNum = 0;
 	getData(url).then((res) => {
-		console.log(questionsDB);
 		render(questionsDB[questionNum]);
-	});
-    console.log(questionsDB)
-	render(questionsDB[questionNum]);
+	}); 
+    // render(questionsDB[questionNum]);
 }
-console.log(questionsDB)
-
 
 /* ----- Get Question and Create Questions Data Base ---- */
 
@@ -74,31 +73,47 @@ function createQuestions(results) {
 /* ------ Render Game and Check Progress ----- */
 
 function render(question) {
-	console.log(question);
 	currentQ.innerText = question.text;
 	question.answers.forEach((choice, idx) => {
 		document.getElementById(idx).innerText = choice;
 	});
+    answers.addEventListener('click', (e) => {
+		if (e.target.className === ('answer-choice')) {
+            isCorrect(question.correct, e.target.id)
+    
+    }}) 
 }
 
-function isCorrect(userChoice, correct_answer) {
-	// checks if users choice is correct
-	// get the target click made by user
-	// compare id# of click to currentQuestion.correct_answer
-	// if they are the same
-	// turn button green
-	// Update Score
-	// else
-	// turn button red
-	// incorrect
+// function nextQuestion() {
+//     // gets the next question in the database and calls render on it
+//     if (questionNum < 10) {
+//         questionNum++;
+//         render(questionsDB[questionNum])
+//     } else {
+//         console.log("Game Over")
+//     }
+// }
+
+function isCorrect(correctAns, userAns) {
+		if ((correctAns == userAns)) {
+            currentScore++;
+            console.log("Score:", currentScore)
+            return;
+        }
+		questionNum++;
+        // check if game is over
+        console.log("Question:", questionNum);
+        // if not render next question
+        return;
 }
 
 // triggered after each round to check if game is over
 function isGameOver() {
     if (remainingQuestions === 0) {
         return true;
-    } 
-    return false;
+    } else {
+        render(questionsDB[questionNum])
+    }
 }
 
 function playAgain() {
