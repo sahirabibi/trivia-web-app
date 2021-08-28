@@ -13,37 +13,34 @@
     </header>
     <div class="dashboard">
         <button id="options">Options</button>
-        <h3 id="score">Score</h3>
     </div>
     <div class="main">
         <div class="topic">
             <h2 id="topic-title">Topic</h2>
-            <h3 id="current-topic">Current Topic</h3>
+            <h3 id="current-topic">Computer Science</h3>
         </div>
         <div class="current-question">
             <h3>Question</h3>
-            <h4 id="question">This is the current question</h4>
+            <p id="question"></p>
         </div>
         <div class="container" id="answers">
-            <button class="answer-choice" id="A">A</button>
-            <button class="answer-choice" id="B">B</button>
-            <button class="answer-choice" id="C">C</button>
-            <button class="answer-choice" id="D">D</button>
-        </div>    
+            <button class="answer-choice" id="0">A</button>
+            <button class="answer-choice" id="1">B</button>
+            <button class="answer-choice" id="2">C</button>
+            <button class="answer-choice" id="3">D</button>
+        </div>  
+        <button id="next">Restart</button>  
     </div>
     <div class="modal" id="start-modal">
         <div class="modal-content">
-            <h2>Lets Play Trivia!</h2>
             <div class="modal-textbook">
-                <p>Trivia is a game where a user is asked a series of ten questions on the given topic of choice. In this case, its
-                    Computer Science!</p>
-                <p>Each question comes with four multiple choice options</p>
-                <p>For each question a user gets correct, they are awarded a point!</p>
+                <h2>Lets Play Trivia!</h2>
+                <p>Trivia is a game where a user is asked a series of ten questions on the given topic of choice.</p>
                 <p>See how many you can get right!</p>
             </div>
             <div id="modal-buttons">
-                <button id="start">Start</button>
-            </div>    
+                <button class="start">Start</button>
+            </div>
         </div>
     </div>
 
