@@ -71,7 +71,7 @@ function endGame() {
 			<div class="modal-textbook">
 				<h3 id="final-score">Final Score: ${currentScore} </h3>
 			</div>`;
-	startBtn.innerText = "Play Again"
+	startBtn.innerText = 'Play Again';
 	score.innerText = `FINAL SCORE: ${currentScore}`;
 }
 
@@ -240,7 +240,5 @@ answers.addEventListener('click', (e) => {
 
 // create endGame()
 
-
-
-// for endgame change modal content to display user score 
-// change start button to display play again 
+// for endgame change modal content to display user score
+// change start button to display play again
