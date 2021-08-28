@@ -13,7 +13,6 @@
     </header>
     <div class="dashboard">
         <button id="options">Options</button>
-        <h3 id="score">Score</h3>
     </div>
     <div class="main">
         <div class="topic">
@@ -30,7 +29,7 @@
             <button class="answer-choice" id="2">C</button>
             <button class="answer-choice" id="3">D</button>
         </div>  
-        <button id="next">Next Question</button>  
+        <button id="next">Restart</button>  
     </div>
     <div class="modal" id="start-modal">
         <div class="modal-content">
@@ -45,6 +44,18 @@
             <div id="modal-buttons">
                 <button id="start">Start</button>
             </div>    
+        </div>
+    </div>
+    <div class="modal" id="end" style="display: none;">
+        <div class="modal-content">
+            <h2>GAME OVER!</h2>
+            <div class="modal-textbook">
+                <p>You did it!</p>
+                <p id="final-score">Final Score: </p>
+            </div>
+            <div id="modal-buttons">
+                <button id="play-again">Play Again</button>
+            </div>
         </div>
     </div>
 

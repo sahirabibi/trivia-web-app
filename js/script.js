@@ -2,7 +2,14 @@
 const url =
 	'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
 
-
+// fetch(url)
+// 	.then((res) => res.json())
+// 	.then((res) => {
+// 			createQuestions(res.results);
+// 	})
+// 	.catch((error) => {
+// 			console.log('Something went wrong.', error);
+// 	});
 
 // State Variables
 // url takes three params: category #, difficulty, and type = [easy, medium, hard]
@@ -11,123 +18,103 @@ const url =
 
 /* ---- app's state variables ---- */
 let questionsDB = [];
-let questionNum;
-let remainingQuestions;
-let currentScore;
+let questionNum = 0;
+let remainingQuestions = 10;
+let currentScore = 0;
+let currentQuestion; 
 
 /*----  Cached DOM Elements --- */
 
 const startModal = document.querySelector('#start-modal');
 const startBtn = document.querySelector('#start');
 const optionsBtn = document.querySelector('#options');
-const score = document.querySelector('#score');
+const score = document.querySelector('#final-score');
 const currentTopic = document.querySelector('#current-topic');
 const currentQ = document.querySelector('#question');
 const answers = document.querySelector('#answers');
-
-/*- Hide and Show Start Modal -*/
-// add event listener to start button to close modal and begin game
-startBtn.addEventListener('click', () => {
-	toggleModal(startModal);
-	// initialize game
-	// displayQuestion(questions)
-    init(url);
-});
+const endModal = document.getElementById("end");
+const playAgain = document.querySelector("#play-again")
 
 
 /*---- Functions -----*/
 
-function init(url) {
+function reset() {
 	// triggers call to API via getData
 	currentScore = 0;
 	questionNum = 0;
-	getData(url).then((res) => {
-		render(questionsDB[questionNum]);
-	}); 
-    // render(questionsDB[questionNum]);
+	// getData(url).then((res) => {
+	// 	render(questionsDB[questionNum]);
+	// });
+	render(questionsDB[questionNum]);
 }
 
 /* ----- Get Question and Create Questions Data Base ---- */
 
-function getData(url) {
-	// use url to fetch data
-	// send data to formatData() to render it on page
-	return (fetch(url)
-		.then((res) => res.json())
-		.then((res) => {
-			createQuestions(res.results);
-		})
-		.catch((error) => {
-			console.log('Something went wrong.', error);
-		}));
-}
+// function getData(url) {
+// 	// use url to fetch data
+// 	// send data to formatData() to render it on page
+// 	return (fetch(url)
+// 		.then((res) => res.json())
+// 		.then((res) => {
+// 			createQuestions(res.results);
+// 		})
+// 		.catch((error) => {
+// 			console.log('Something went wrong.', error);
+// 		}));
+// }
 
 function createQuestions(results) {
 	results.forEach((element) => {
 		let new_question = new Question(element);
 		questionsDB.push(new_question);
 	});
+	// render question
+	currentQuestion = questionsDB[questionNum];
+	render(currentQuestion);
 }
-
 
 /* ------ Render Game and Check Progress ----- */
 
 function render(question) {
+	// display current question and choices to user
 	currentQ.innerText = question.text;
 	question.answers.forEach((choice, idx) => {
 		document.getElementById(idx).innerText = choice;
 	});
-    answers.addEventListener('click', (e) => {
-		if (e.target.className === ('answer-choice')) {
-            isCorrect(question.correct, e.target.id)
-    
-    }}) 
 }
 
-// function nextQuestion() {
-//     // gets the next question in the database and calls render on it
-//     if (questionNum < 10) {
-//         questionNum++;
-//         render(questionsDB[questionNum])
-//     } else {
-//         console.log("Game Over")
-//     }
-// }
-
-function isCorrect(correctAns, userAns) {
-		if ((correctAns == userAns)) {
-            currentScore++;
-            console.log("Score:", currentScore)
-            return;
-        }
-		questionNum++;
-        // check if game is over
-        console.log("Question:", questionNum);
-        // if not render next question
-        return;
+function checkAnswer(correctAns, userAns) {
+	if (correctAns == userAns) {
+		currentScore++;
+	}
+	questionNum++;
+	currentQuestion = questionsDB[questionNum]
+	// check if game is over
 }
 
 // triggered after each round to check if game is over
 function isGameOver() {
-    if (remainingQuestions === 0) {
-        return true;
-    } else {
-        render(questionsDB[questionNum])
-    }
-}
-
-function playAgain() {
-	// displays modal asking user to play again and final score
-	// if playAgain
-	// calls init()
+	if (questionNum < 10) {
+		render(currentQuestion);
+	} else {
+		return true;	
+	}
 }
 
 function toggleModal(targetModal) {
 	if (targetModal.style.display === 'none') {
 		targetModal.style.display = 'block';
+		console.log("changed style")
 	} else {
 		targetModal.style.display = 'none';
 	}
+}
+
+function endGame() {
+	// displays modal asking user to play again and final score
+	toggleModal(endModal);
+	score.innerText = `FINAL SCORE: ${currentScore}`;
+	
 }
 
 class Question {
@@ -144,6 +131,58 @@ class Question {
 	}
 }
 
+/* ----------------------- Main Game Events ---------------------*/
+// click start button to begin game
+startBtn.addEventListener('click', function () {
+	// fetch url
+	toggleModal(startModal);
+	fetch(url)
+		.then((res) => res.json())
+		.then((res) => {
+			createQuestions(res.results);
+		})
+		.catch((error) => {
+			console.log('Something went wrong.', error);
+		});
+});
+
+
+
+// click an answer to progress through game
+answers.addEventListener('click', (e) => {
+	if (e.target.className === 'answer-choice') {
+		console.log(currentQuestion.correct);
+		console.log(e.target.id)
+		// check if answer is correct
+		checkAnswer(currentQuestion.correct, e.target.id);
+		// check if game is over
+		if (isGameOver()) {
+			endGame()
+		}
+	}
+});
+
+/*- Hide and Show Start Modal -*/
+// add event listener to start button to close modal and begin game
+// startBtn.addEventListener('click', () => {
+// 	toggleModal(startModal);
+// 	// initialize game
+// 	// displayQuestion(questions)
+//     init();
+// });
+
+////////////////// Removed Functions START ///////////////////
+
+// function nextQuestion() {
+//     // gets the next question in the database and calls render on it
+//     if (questionNum < 10) {
+//         questionNum++;
+//         render(questionsDB[questionNum])
+//     } else {
+//         console.log("Game Over")
+//     }
+// }
+
 // function question(results) {
 // 	// creates a single question obj and randomizes the answer choices before sending obj to questions array
 // 		let text = results.question;
@@ -157,6 +196,8 @@ class Question {
 //         questions.push(new_question);
 
 // }
+
+////////////////// Removed Functions END ///////////////////
 
 /////////////////// GAME LOGIC ///////////////////////
 // API DATA:
