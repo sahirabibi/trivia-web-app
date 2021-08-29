@@ -5,9 +5,9 @@ let currentScore;
 let currentQuestion;
 // let category;
 // let difficulty;
-
-let url = `https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple`;
-
+let category;
+let difficulty;
+let url;
 /*----  Cached DOM Elements --- */
 
 const startModal = document.querySelector('.modal');
@@ -28,6 +28,11 @@ const difficultyMenu = document.querySelector('#difficulty-menu');
 
 /*------------------- Functions -------------------*/
 
+function updateParams(button, id, target) {
+	button.setAttribute('data-id', id);
+	button.innerText = target.innerText;
+}
+
 /* -- Start Game and Check Progress -- */
 
 function init() {
@@ -35,6 +40,9 @@ function init() {
 	questionsDB = [];
 	questionNum = 0;
 	currentScore = 0;
+	category = categoryBtn.getAttribute('data-id');
+	difficulty = difficultyBtn.getAttribute('data-id');
+	url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
 	currentQuestion = questionsDB[questionNum];
 }
 
@@ -101,20 +109,6 @@ function toggleModal(targetModal) {
 	}
 }
 
-// function getCategory() {
-// 	if (e.target.tagName === 'P') {
-// 		category = e.target.id;
-// 		categoryBtn.innerText = e.target.innerText;
-// 	}
-// }
-
-// function getDifficulty() {
-// 	if (e.target.tagName === 'P') {
-// 		difficulty = e.target.id;
-// 		difficultyBtn.innerText = e.target.innerText;
-// 	}
-// }
-
 class Question {
 	// creates a single question obj and randomizes the answer choices before sending obj to questions array
 	constructor(question) {
@@ -133,44 +127,21 @@ class Question {
 
 // get user choices for quiz type
 
-// categoriesMenu.addEventListener('click', (e) => {
-// 	let category;
-// 	if (e.target.tagName === 'P') {
-// 		category = e.target.id;
-// 		categoryBtn.innerText = e.target.innerText;
-// 	}
-// });
+categoriesMenu.addEventListener('click', function getCategory(e) {
+	if (e.target.tagName === 'P') {
+		// categoryBtn.setAttribute("data-id", e.target.id)
+		updateParams(categoryBtn, e.target.id, e.target);
+	}
+});
 
-// difficultyMenu.addEventListener('click', (e) => {
-// 	if (e.target.tagName === 'P') {
-// 		difficulty = e.target.id;
-// 		difficultyBtn.innerText = e.target.innerText;
-// 	}
-// });
+difficultyMenu.addEventListener('click', function getDifficulty(e) {
+	if (e.target.tagName === 'P') {
+		updateParams(difficultyBtn, e.target.id, e.target);
+		// difficultyBtn.setAttribute('data-id', e.target.id);
+	}
+});
 
-function updateURL() {
-
-	categoriesMenu.addEventListener('click', function getCategory(e) {
-		if (e.target.tagName === 'P') {
-			let category = e.target.id;
-			categoryBtn.innerText = e.target.innerText;
-		}
-	});
-
-	difficultyMenu.addEventListener('click', function getDifficulty(e) {
-		if (e.target.tagName === 'P') {
-			let difficulty = e.target.id;
-			difficultyBtn.innerText = e.target.innerText;
-			return difficulty;
-		}
-	});
-	console.log(getDifficulty());
-
-	return `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
-
-}
-
-url = updateURL();
+// url = updateURL();
 // click start button to begin game
 startBtn.addEventListener('click', function () {
 	toggleModal(startModal);
@@ -197,6 +168,16 @@ answers.addEventListener('click', (e) => {
 		}
 	}
 });
+
+
+
+
+
+
+
+
+
+
 
 ////////////////// Removed Functions START ///////////////////
 
@@ -262,6 +243,38 @@ answers.addEventListener('click', (e) => {
 
 // let paramsObj = {"category": "18", "type": "multiple", "difficulty": "easy"}
 
+// categoriesMenu.addEventListener('click', (e) => {
+// 	let category;
+// 	if (e.target.tagName === 'P') {
+// 		category = e.target.id;
+// 		categoryBtn.innerText = e.target.innerText;
+// 	}
+// });
+
+// difficultyMenu.addEventListener('click', (e) => {
+// 	if (e.target.tagName === 'P') {
+// 		difficulty = e.target.id;
+// 		difficultyBtn.innerText = e.target.innerText;
+// 	}
+// });
+
+// function updateURL() {
+
+// function getCategory() {
+// 	if (e.target.tagName === 'P') {
+// 		category = e.target.id;
+// 		categoryBtn.innerText = e.target.innerText;
+// 	}
+// }
+
+// function getDifficulty() {
+// 	if (e.target.tagName === 'P') {
+// 		difficulty = e.target.id;
+// 		difficultyBtn.innerText = e.target.innerText;
+// 	}
+// }
+
+
 ////////////////// Removed Functions END ///////////////////
 
 /////////////////// GAME LOGIC ///////////////////////
@@ -318,7 +331,5 @@ answers.addEventListener('click', (e) => {
 /// grab category id
 // grab difficulty id
 
-
-
-// APPROACH 
-// function that gets inputs and returns a modified url 
+// APPROACH
+// function that gets inputs and returns a modified url
