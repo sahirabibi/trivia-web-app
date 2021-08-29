@@ -3,8 +3,6 @@ let questionsDB;
 let questionNum;
 let currentScore;
 let currentQuestion;
-// let category;
-// let difficulty;
 let category;
 let difficulty;
 let url;
@@ -19,8 +17,6 @@ const currentTopic = document.querySelector('#current-topic');
 const currentQ = document.querySelector('#question');
 const answers = document.querySelector('#answers');
 const modalText = document.querySelector('.modal-textbook');
-
-// get user category and diffuclty
 const categoryBtn = document.querySelector('#category');
 const difficultyBtn = document.querySelector('#difficulty');
 const categoriesMenu = document.querySelector('#category-menu');
@@ -86,7 +82,7 @@ function checkAnswer(correctAns, userAns, target) {
 
 // triggered after each round to check if game is over
 function isGameOver() {
-	if (questionNum > 9) return true;
+	if (questionNum === questionsDB.length) return true;
 	setTimeout(function () {
 		render(currentQuestion);
 	}, 500);
@@ -127,7 +123,6 @@ class Question {
 /* ----------------------- Main Game Events ---------------------*/
 
 // get user choices for quiz type
-
 categoriesMenu.addEventListener('click', function getCategory(e) {
 	if (e.target.tagName === 'P') {
 		// categoryBtn.setAttribute("data-id", e.target.id)
@@ -142,7 +137,6 @@ difficultyMenu.addEventListener('click', function getDifficulty(e) {
 	}
 });
 
-// url = updateURL();
 // click start button to begin game
 startBtn.addEventListener('click', function () {
 	toggleModal(startModal);
@@ -165,7 +159,7 @@ answers.addEventListener('click', (e) => {
 		checkAnswer(currentQuestion.correct, e.target.id, e.target);
 		// check if game is over
 		if (isGameOver()) {
-			setTimeout(endGame(), 500);
+			setTimeout(function() {endGame()}, 2000);
 		}
 	}
 });
