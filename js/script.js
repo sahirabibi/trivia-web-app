@@ -1,12 +1,13 @@
-// Global Variables
-const url =
-	'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
 
 /* ---- app's state variables ---- */
 let questionsDB;
 let questionNum;
 let currentScore;
 let currentQuestion;
+let category;
+let difficulty;
+
+let url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
 
 /*----  Cached DOM Elements --- */
 
@@ -19,6 +20,12 @@ const currentQ = document.querySelector('#question');
 const answers = document.querySelector('#answers');
 // const endModal = document.getElementById('end');
 const modalText = document.querySelector('.modal-textbook');
+
+// get user category and diffuclty
+const categoryBtn = document.querySelector("#category")
+const difficultyBtn = document.querySelector("#difficulty")
+const categoriesMenu = document.querySelector('#category-menu');
+const difficultyMenu  = document.querySelector('#difficulty-menu')
 
 /*------------------- Functions -------------------*/
 
@@ -95,6 +102,20 @@ function toggleModal(targetModal) {
 	}
 }
 
+// function getCategory() {
+// 	if (e.target.tagName === 'P') {
+// 		category = e.target.id;
+// 		categoryBtn.innerText = e.target.innerText;
+// 	}
+// }
+
+// function getDifficulty() {
+// 	if (e.target.tagName === 'P') {
+// 		difficulty = e.target.id;
+// 		difficultyBtn.innerText = e.target.innerText;
+// 	}
+// }
+
 class Question {
 	// creates a single question obj and randomizes the answer choices before sending obj to questions array
 	constructor(question) {
@@ -110,6 +131,25 @@ class Question {
 }
 
 /* ----------------------- Main Game Events ---------------------*/
+
+// get user choices for quiz type
+
+categoriesMenu.addEventListener("click", (e) => {
+	if (e.target.tagName === 'P') {
+		category = e.target.id;
+		console.log(category)
+		categoryBtn.innerText = e.target.innerText;
+}}
+)
+
+difficultyMenu.addEventListener('click', (e) => {
+	if (e.target.tagName === 'P') {
+		difficulty = e.target.id;
+		difficultyBtn.innerText = e.target.innerText;
+	}
+});
+
+
 // click start button to begin game
 startBtn.addEventListener('click', function () {
 	toggleModal(startModal);
@@ -253,3 +293,7 @@ answers.addEventListener('click', (e) => {
 
 // for endgame change modal content to display user score
 // change start button to display play again
+
+
+/// grab category id 
+// grab difficulty id
