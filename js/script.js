@@ -12,12 +12,12 @@ let url;
 
 const startModal = document.querySelector('.modal');
 const startBtn = document.querySelector('.start');
+const returnBtn = document.querySelector('#return')
 const optionsBtn = document.querySelector('#options');
 const score = document.querySelector('#final-score');
 const currentTopic = document.querySelector('#current-topic');
 const currentQ = document.querySelector('#question');
 const answers = document.querySelector('#answers');
-// const endModal = document.getElementById('end');
 const modalText = document.querySelector('.modal-textbook');
 
 // get user category and diffuclty
@@ -169,6 +169,17 @@ answers.addEventListener('click', (e) => {
 	}
 });
 
+optionsBtn.addEventListener("click", () => {
+	toggleModal(startModal);
+	returnBtn.style.display = "inline-block"
+	startBtn.innerText = "Restart"
+	modalText.innerHTML = `<h2>Trivia!</h2>
+	<h3>Choose a new category or return to your game.</h3>`;	
+});
+
+returnBtn.addEventListener('click', () => {
+	toggleModal(startModal);
+});
 
 
 

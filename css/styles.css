@@ -66,13 +66,15 @@ header,
 
 #options,
 .start {
-	border-radius: 10%;
-	padding: 10px 15px;
-	height: fit-content;
-	width: fit-content;
-	border: none;
+	border-radius: 50%;
+	/* padding: 10px 10px; */
+	height: 50px;
+	width: 100px;
+	margin: 0px 30px;
+	/* border: none; */
+	border-color:white;
 	outline: none;
-	background-color: cornflowerblue;
+	background-color: rgb(10, 54, 136);
 	color: white;
 }
 
@@ -109,7 +111,7 @@ header,
 
 .modal-content {
 	text-align: center;
-	background-color: #f1ebe1;
+	background-color: #bbe1ec;
 	height: 450px;
 	width: 450px;
 	border-radius: 20%;
@@ -135,7 +137,8 @@ header,
 	color: white;
 	padding: 16px;
 	font-size: 16px;
-	border: none;
+	/* border: none; */
+	border-color:white;
 	width: 300px;
 	border-radius: 20px;
 }
@@ -184,5 +187,5 @@ header,
 }
 
 .hidden {
-	display: 'none';
+	display: none;
 }
