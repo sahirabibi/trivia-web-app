@@ -3,7 +3,7 @@ const url =
 	'https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple';
 
 /* ---- app's state variables ---- */
-let questionsDB = [];
+let questionsDB;
 let questionNum;
 let currentScore;
 let currentQuestion;
@@ -26,6 +26,7 @@ const modalText = document.querySelector('.modal-textbook');
 
 function init() {
 	// initialize game state variables
+	questionsDB = [];
 	questionNum = 0;
 	currentScore = 0;
 	currentQuestion = questionsDB[questionNum];
@@ -49,11 +50,21 @@ function render(question) {
 	});
 }
 
-function checkAnswer(correctAns, userAns) {
+function checkAnswer(correctAns, userAns, target) {
 	// take correct answer and compare it to user answer
 	if (correctAns == userAns) {
 		currentScore++;
-	}
+		target.classList.add("flash-green");
+		setTimeout(function(){
+      		target.classList.remove('flash-green');
+  			}, 250);
+	} else {
+		// flash red for wrong answer
+		target.classList.add('flash-red');
+		setTimeout(function () {
+			target.classList.remove('flash-red');
+		}, 250);
+	}	
 	questionNum++;
 	currentQuestion = questionsDB[questionNum];
 }
@@ -61,18 +72,18 @@ function checkAnswer(correctAns, userAns) {
 // triggered after each round to check if game is over
 function isGameOver() {
 	if (questionNum > 9) return true;
-	render(currentQuestion);
+	setTimeout(function () {
+		render(currentQuestion);
+	}, 500);
 }
 
 function endGame() {
 	// modifies start modal and displays final score and asks to play again
 	toggleModal(startModal);
-	modalText.innerHTML = `<h2>GAME OVER!</h2>
-			<div class="modal-textbook">
-				<h3 id="final-score">Final Score: ${currentScore} </h3>
-			</div>`;
+	modalText.innerHTML = `<h2>GAME OVER!</h2>`;
 	startBtn.innerText = 'Play Again';
 	score.innerText = `FINAL SCORE: ${currentScore}`;
+	score.style.display = "block";
 }
 
 function toggleModal(targetModal) {
@@ -118,10 +129,10 @@ startBtn.addEventListener('click', function () {
 answers.addEventListener('click', (e) => {
 	if (e.target.className === 'answer-choice') {
 		// check if answer is correct
-		checkAnswer(currentQuestion.correct, e.target.id);
+		checkAnswer(currentQuestion.correct, e.target.id, e.target);
 		// check if game is over
 		if (isGameOver()) {
-			endGame();
+			setTimeout(endGame(), 500);
 		}
 	}
 });
