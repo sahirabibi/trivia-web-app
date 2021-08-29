@@ -1,13 +1,12 @@
-
 /* ---- app's state variables ---- */
 let questionsDB;
 let questionNum;
 let currentScore;
 let currentQuestion;
-let category;
-let difficulty;
+// let category;
+// let difficulty;
 
-let url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
+let url = `https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple`;
 
 /*----  Cached DOM Elements --- */
 
@@ -22,10 +21,10 @@ const answers = document.querySelector('#answers');
 const modalText = document.querySelector('.modal-textbook');
 
 // get user category and diffuclty
-const categoryBtn = document.querySelector("#category")
-const difficultyBtn = document.querySelector("#difficulty")
+const categoryBtn = document.querySelector('#category');
+const difficultyBtn = document.querySelector('#difficulty');
 const categoriesMenu = document.querySelector('#category-menu');
-const difficultyMenu  = document.querySelector('#difficulty-menu')
+const difficultyMenu = document.querySelector('#difficulty-menu');
 
 /*------------------- Functions -------------------*/
 
@@ -61,17 +60,17 @@ function checkAnswer(correctAns, userAns, target) {
 	// take correct answer and compare it to user answer
 	if (correctAns == userAns) {
 		currentScore++;
-		target.classList.add("flash-green");
-		setTimeout(function(){
-      		target.classList.remove('flash-green');
-  			}, 250);
+		target.classList.add('flash-green');
+		setTimeout(function () {
+			target.classList.remove('flash-green');
+		}, 250);
 	} else {
 		// flash red for wrong answer
 		target.classList.add('flash-red');
 		setTimeout(function () {
 			target.classList.remove('flash-red');
 		}, 250);
-	}	
+	}
 	questionNum++;
 	currentQuestion = questionsDB[questionNum];
 }
@@ -90,7 +89,7 @@ function endGame() {
 	modalText.innerHTML = `<h2>GAME OVER!</h2>`;
 	startBtn.innerText = 'Play Again';
 	score.innerText = `FINAL SCORE: ${currentScore}`;
-	score.style.display = "block";
+	score.style.display = 'block';
 }
 
 function toggleModal(targetModal) {
@@ -134,22 +133,44 @@ class Question {
 
 // get user choices for quiz type
 
-categoriesMenu.addEventListener("click", (e) => {
-	if (e.target.tagName === 'P') {
-		category = e.target.id;
-		console.log(category)
-		categoryBtn.innerText = e.target.innerText;
-}}
-)
+// categoriesMenu.addEventListener('click', (e) => {
+// 	let category;
+// 	if (e.target.tagName === 'P') {
+// 		category = e.target.id;
+// 		categoryBtn.innerText = e.target.innerText;
+// 	}
+// });
 
-difficultyMenu.addEventListener('click', (e) => {
-	if (e.target.tagName === 'P') {
-		difficulty = e.target.id;
-		difficultyBtn.innerText = e.target.innerText;
-	}
-});
+// difficultyMenu.addEventListener('click', (e) => {
+// 	if (e.target.tagName === 'P') {
+// 		difficulty = e.target.id;
+// 		difficultyBtn.innerText = e.target.innerText;
+// 	}
+// });
 
+function updateURL() {
 
+	categoriesMenu.addEventListener('click', function getCategory(e) {
+		if (e.target.tagName === 'P') {
+			let category = e.target.id;
+			categoryBtn.innerText = e.target.innerText;
+		}
+	});
+
+	difficultyMenu.addEventListener('click', function getDifficulty(e) {
+		if (e.target.tagName === 'P') {
+			let difficulty = e.target.id;
+			difficultyBtn.innerText = e.target.innerText;
+			return difficulty;
+		}
+	});
+	console.log(getDifficulty());
+
+	return `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
+
+}
+
+url = updateURL();
 // click start button to begin game
 startBtn.addEventListener('click', function () {
 	toggleModal(startModal);
@@ -294,6 +315,10 @@ answers.addEventListener('click', (e) => {
 // for endgame change modal content to display user score
 // change start button to display play again
 
-
-/// grab category id 
+/// grab category id
 // grab difficulty id
+
+
+
+// APPROACH 
+// function that gets inputs and returns a modified url 
