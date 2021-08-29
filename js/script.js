@@ -43,6 +43,7 @@ function init() {
 	category = categoryBtn.getAttribute('data-id');
 	difficulty = difficultyBtn.getAttribute('data-id');
 	url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
+	currentTopic.innerText = categoryBtn.innerText;
 	currentQuestion = questionsDB[questionNum];
 }
 
@@ -58,9 +59,9 @@ function createQuestions(results) {
 
 function render(question) {
 	// display current question and choices to user
-	currentQ.innerText = question.text;
+	currentQ.innerHTML = question.text;
 	question.answers.forEach((choice, idx) => {
-		document.getElementById(idx).innerText = choice;
+		document.getElementById(idx).innerHTML = choice;
 	});
 }
 
@@ -112,9 +113,10 @@ function toggleModal(targetModal) {
 class Question {
 	// creates a single question obj and randomizes the answer choices before sending obj to questions array
 	constructor(question) {
-		this.text = question.question;
+		this.text = `<p>${question.question}</p>`;
 		this.answers = question.incorrect_answers;
-		this.correct = question.correct_answer;
+		this.answers.forEach((element) => `<p>${element}</p>`);
+		this.correct = `${question.correct_answer}`;
 		// add correct answer to random location in answers array
 		let ranNum = Math.floor(Math.random() * 4);
 		this.answers.splice(ranNum, 0, this.correct);
@@ -185,7 +187,13 @@ returnBtn.addEventListener('click', () => {
 
 
 
-
+/*----    
+< as &lt;
+> as &gt;
+& as &amp;
+" as &quot;
+' as &#39;
+-------*/
 
 
 

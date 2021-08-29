@@ -112,6 +112,7 @@ header,
 .modal-content {
 	text-align: center;
 	background-color: #bbe1ec;
+	border-style: solid 5px black;
 	height: 450px;
 	width: 450px;
 	border-radius: 20%;
@@ -188,4 +189,8 @@ header,
 
 .hidden {
 	display: none;
+}
+
+#return:hover, #main:hover {
+	background-color: rgb(99, 99, 212);
 }
