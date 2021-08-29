@@ -104,7 +104,6 @@ function endGame() {
 function toggleModal(targetModal) {
 	if (targetModal.style.display === 'none') {
 		targetModal.style.display = 'block';
-		console.log('changed style');
 	} else {
 		targetModal.style.display = 'none';
 	}
