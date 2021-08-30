@@ -47,14 +47,25 @@ header > h3 {
 
 }
 
+#current-topic {
+	font-size: 2rem;
+	background-color: #E11D74;
+	padding: 40px;
+	color:white;
+	border-radius: 50%;
+	text-align: center;
+}
+
 .question {
 	font-family: 'Bungee', cursive;
 	font-size: 1.5rem;
+	font: center;
+	
 }
 
 .current-question {
 	display: grid;
-	grid-template-rows: 20% 80%;
+	grid-template-rows: 20% 50%;
 	/* background-color: #512D6D; */
 	font-family: 'Kosugi Maru', sans-serif;
 }
