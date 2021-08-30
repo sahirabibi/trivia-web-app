@@ -5,24 +5,21 @@ body {
 	padding: 50px;
 	display: grid;
 	grid-template-rows: 15% 80% 10%;
-	background-color: #EEEEEE;
-	color: #11698E;
+	background-color: #eeeeee;
+	color: #11698e;
 }
 
-
-header{
+header {
 	display: grid;
-	justify-content: center; 
+	justify-content: center;
 	/* font-family: 'Press Start 2P', cursive; */
 	font-family: 'Bungee', cursive;
-	font-size:1.5rem;
+	font-size: 1.5rem;
 }
 
 header > h3 {
 	margin-bottom: 350px;
-	
 }
-	
 
 .main {
 	display: grid;
@@ -32,11 +29,10 @@ header > h3 {
 	/* flex-direction: column;
 	align-items: center; */
 	/* background-color: #6B011F; */
-	display:grid;
+	display: grid;
 	grid-template-columns: 15% 70%;
 	align-items: center;
 	font-family: 'Kosugi Maru', sans-serif;
-
 }
 
 .topic {
@@ -44,14 +40,13 @@ header > h3 {
 	align-items: center; */
 	display: grid;
 	justify-content: center;
-
 }
 
 #current-topic {
 	font-size: 2rem;
-	background-color: #E11D74;
+	background-color: #e11d74;
 	padding: 40px;
-	color:white;
+	color: white;
 	border-radius: 50%;
 	text-align: center;
 }
@@ -60,25 +55,23 @@ header > h3 {
 	font-family: 'Bungee', cursive;
 	font-size: 1.5rem;
 	font: center;
-	
 }
 
 .current-question {
 	display: grid;
 	grid-template-rows: 20% 50%;
-	/* background-color: #512D6D; */
+	margin-left: 50px;
 	font-family: 'Kosugi Maru', sans-serif;
 }
 
 .questions {
-
-	height:max-content;
+	height: max-content;
 	display: grid;
 	grid-template-columns: 50% 50%;
 	grid-template-rows: 50% 50%;
 	justify-items: center;
 	padding: 50px;
-	background-color: #F5A962;
+	background-color: #f5a962;
 	font-family: 'Kosugi Maru', sans-serif;
 	/* flex-wrap: wrap;
 	flex-direction: column;
@@ -101,21 +94,18 @@ header > h3 {
 	padding: 16px;
 	font-size: 20px;
 	width: 400px;
-	border-color:white;
+	border-color: white;
 	border-radius: 20px;
 	margin-top: 10px;
 }
 
-
-
 .flash-green {
-	background-color: #91D18B;
+	background-color: #91d18b;
 }
 
 .flash-red {
 	background-color: #ff4848;
 }
-
 
 #options,
 .start {
@@ -125,16 +115,15 @@ header > h3 {
 	width: 100px;
 	margin: 0px 30px;
 	/* border: none; */
-	border-color:white;
+	border-color: white;
 	outline: none;
-	background-color: #FFE459;
-	color: #11052C;
+	background-color: #ffe459;
+	color: #11052c;
 }
 
 #options {
-	background-color: #F14668;
+	background-color: #f14668;
 	width: 70px;
-
 }
 
 #question {
@@ -171,7 +160,7 @@ header > h3 {
 .modal-content {
 	font-family: 'Kosugi Maru', sans-serif;
 	text-align: center;
-	background-color: #512D6D;
+	background-color: #512d6d;
 	border-style: solid 5px black;
 	height: 450px;
 	width: 450px;
@@ -179,7 +168,7 @@ header > h3 {
 	margin: 300px auto;
 	padding: 20px;
 	line-height: 1.5;
-	color: #EEEEEE;
+	color: #eeeeee;
 }
 
 .modal-textbook > p {
@@ -205,7 +194,7 @@ header > h3 {
 	padding: 16px;
 	font-size: 16px;
 	/* border: none; */
-	border-color:white;
+	border-color: white;
 	width: 300px;
 	border-radius: 20px;
 }
@@ -257,10 +246,10 @@ header > h3 {
 	display: none;
 }
 
-#return:hover, #main:hover {
+#return:hover,
+#main:hover {
 	background-color: rgb(99, 99, 212);
 }
-
 
 /* @media (min-width:600px){
 	body {
@@ -268,9 +257,78 @@ header > h3 {
 	}
 } */
 
-@media (min-width: 600px){
-	.current-topic {
-		background-color: black;
+@media (max-width: 800px) {
+	/* Main Content */
+	body {
+		padding: 0;
+	}
+	.main {
+		display: block;
+		align-items: stretch;
 	}
 
+	.info-content {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	#options {
+		border-radius: 10%;
+		font-size: 20px;
+		width: fit-content;
+		color:#EEEE;
+	}
+
+	#current-topic {
+		width: 200px;
+	}
+
+	/* Questions */
+
+	.current-question {
+		font-size: 50px;
+		height: max-content;
+		padding-top: 0px;
+		margin: 1px;
+	}
+
+	/* Answer Choices */
+
+	.questions {
+		/* height:300px; */
+		display: flex;
+		flex-direction: column;
+		background-color: #f5a962;
+		font-family: 'Kosugi Maru', sans-serif;
+		padding: 10px;
+		margin: 0px;
+		width: 100%;
+		height: 50%;
+		border-radius: 10%;
+	}
+
+	.answer-choice {
+		padding: 5px;
+		font-size: 20px;
+		height: 50px;
+		border-color: white;
+		border-radius: 20px;
+		margin-top: 2px;
+		width: 100%;
+		height: 50%;
+	}
+
+	/* Modal */
+
+	.modal-content {
+		width: 88%;
+		height: 500px;
+		border-radius: 10%;
+		margin: 300px auto;
+		padding: 20px;
+		line-height: 1.5;
+		color: #eeeeee;
+	}
 }
