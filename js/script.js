@@ -178,18 +178,18 @@ returnBtn.addEventListener('click', () => {
 
 
 
+/* ------------
 
-
-/*----    
-< as &lt;
-> as &gt;
-& as &amp;
-" as &quot;
-' as &#39;
--------*/
+- Add Num Question Options 
+- Add High Scores Sheet 
+- Add timed rounds
 
 
 
+
+
+
+-----------*/
 
 ////////////////// Removed Functions START ///////////////////
 

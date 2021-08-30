@@ -1,29 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Kosugi+Maru&family=Press+Start+2P&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Rampart+One&family=Share+Tech+Mono&display=swap');
+
+
 body {
-	height: 100%;
-	padding: 50px;
+	
+	margin: 0 auto;
+	/* width:fit-content; */
 	display: grid;
 	grid-template-rows: 15% 80% 10%;
 	background-color: #eeeeee;
 	color: #11698e;
+	background-image: url("../assets/bg-white-qs.jpg");
+	background-size: cover;
+	
+
 }
 
 header {
-	display: grid;
+	display: flex;
 	justify-content: center;
+	height: 100%;
+	margin-bottom: 50px;
+	background-color: #e11d74;
+	width:100%;
+	
 	/* font-family: 'Press Start 2P', cursive; */
+}
+header > h1 {
 	font-family: 'Bungee', cursive;
-	font-size: 1.5rem;
-}
-
-header > h3 {
-	margin-bottom: 350px;
-}
+	color:white;
+	font-size:75px;
+	margin-bottom: 20px;
+	margin-top:0;
+	
+} 
 
 .main {
 	display: grid;
-	grid-template-rows: 30% 50% 50%;
+	grid-template-rows: 30% 30% 50%;
 }
 .info-content {
 	/* flex-direction: column;
@@ -44,24 +61,47 @@ header > h3 {
 
 #current-topic {
 	font-size: 2rem;
-	background-color: #e11d74;
+	background-color: #00C1D4;
 	padding: 40px;
 	color: white;
 	border-radius: 50%;
 	text-align: center;
+	box-shadow: 5px 10px #888888;
 }
 
 .question {
 	font-family: 'Bungee', cursive;
-	font-size: 1.5rem;
+	font-size: 3rem;
 	font: center;
+	z-index: 1;
+	position: relative;
+	color: #F43B86;
+	margin-bottom: 120px;
+}
+
+#question {
+	color:white;
+	font-family: 'Montserrat', sans-serif;
+	
+
 }
 
 .current-question {
 	display: grid;
-	grid-template-rows: 20% 50%;
-	margin-left: 50px;
+	grid-template-rows: 20% 80%;
+	margin: 0 auto;
 	font-family: 'Kosugi Maru', sans-serif;
+	text-align: center;
+	align-items: center;
+	background-color: #00C1D4;
+	color:white;
+	height: 70%;
+	width: 70%;
+	padding: 20px;
+	justify-content: center;
+	border-radius: 20px;
+	box-shadow: 5px 10px #888888;
+	
 }
 
 .questions {
@@ -70,33 +110,24 @@ header > h3 {
 	grid-template-columns: 50% 50%;
 	grid-template-rows: 50% 50%;
 	justify-items: center;
-	padding: 50px;
-	background-color: #f5a962;
+	padding: 30px;
 	font-family: 'Kosugi Maru', sans-serif;
-	/* flex-wrap: wrap;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-content: center; */
-	/* order: 2; */
 }
 
-.current-question {
-	text-align: center;
-	/* margin: 50px; */
-	/* order: 1; */
-	align-items: center;
-}
 
 .answer-choice {
 	font-family: 'Kosugi Maru', sans-serif;
-	background-color: #00c1d4;
-	color: white;
+	background-color: #FFE459;
+	color: black;
 	padding: 16px;
 	font-size: 20px;
 	width: 400px;
+	height: 85%;
 	border-color: white;
 	border-radius: 20px;
-	margin-top: 10px;
+	margin: 10px 10px;
+	box-shadow: 2px 4px #888888;
+	margin-top: 2px;
 }
 
 .flash-green {
@@ -122,8 +153,8 @@ header > h3 {
 }
 
 #options {
-	background-color: #f14668;
-	width: 70px;
+	background-color: #F43B86;
+	width: 70px;	
 }
 
 #question {
@@ -160,15 +191,17 @@ header > h3 {
 .modal-content {
 	font-family: 'Kosugi Maru', sans-serif;
 	text-align: center;
-	background-color: #512d6d;
+	background-color: #00C1D4;
 	border-style: solid 5px black;
-	height: 450px;
+	height: 550px;
 	width: 450px;
 	border-radius: 20%;
 	margin: 300px auto;
 	padding: 20px;
 	line-height: 1.5;
-	color: #eeeeee;
+	color: black;
+	font-size: 20px;
+	
 }
 
 .modal-textbook > p {
@@ -260,11 +293,11 @@ header > h3 {
 @media (max-width: 800px) {
 	/* Main Content */
 	body {
-		padding: 0;
+		margin: 0 auto;
 	}
 	.main {
 		display: block;
-		align-items: stretch;
+		justify-content: center;
 	}
 
 	.info-content {
@@ -282,16 +315,20 @@ header > h3 {
 	}
 
 	#current-topic {
-		width: 200px;
+		margin-bottom: 80px;
 	}
 
 	/* Questions */
 
 	.current-question {
-		font-size: 50px;
-		height: max-content;
-		padding-top: 0px;
-		margin: 1px;
+		height: 20%;
+		margin-bottom: 30px;
+	}
+
+
+	#question {
+		font-size: 1.5rem;
+		margin:0 auto;
 	}
 
 	/* Answer Choices */
@@ -300,23 +337,21 @@ header > h3 {
 		/* height:300px; */
 		display: flex;
 		flex-direction: column;
-		background-color: #f5a962;
 		font-family: 'Kosugi Maru', sans-serif;
-		padding: 10px;
+		padding: 20px;
 		margin: 0px;
 		width: 100%;
-		height: 50%;
-		border-radius: 10%;
+		height:40%;
 	}
 
 	.answer-choice {
 		padding: 5px;
-		font-size: 20px;
+		font-size: 40px;
 		height: 50px;
 		border-color: white;
 		border-radius: 20px;
 		margin-top: 2px;
-		width: 100%;
+		width: 90%;
 		height: 50%;
 	}
 
