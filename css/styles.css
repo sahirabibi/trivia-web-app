@@ -1,14 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Kosugi+Maru&family=Press+Start+2P&display=swap');
+
 body {
 	height: 100%;
 	padding: 50px;
 	display: grid;
 	grid-template-rows: 15% 80% 10%;
+	background-color: #EEEEEE;
+	color: #11698E;
 }
 
 
 header{
 	display: grid;
-	justify-content: center;  
+	justify-content: center; 
+	/* font-family: 'Press Start 2P', cursive; */
+	font-family: 'Bungee', cursive;
+	font-size:1.5rem;
+}
+
+header > h3 {
+	margin-bottom: 350px;
+	
 }
 	
 
@@ -19,10 +31,12 @@ header{
 .info-content {
 	/* flex-direction: column;
 	align-items: center; */
-	background-color: blue;
+	/* background-color: #6B011F; */
 	display:grid;
 	grid-template-columns: 15% 70%;
 	align-items: center;
+	font-family: 'Kosugi Maru', sans-serif;
+
 }
 
 .topic {
@@ -30,24 +44,31 @@ header{
 	align-items: center; */
 	display: grid;
 	justify-content: center;
-	background-color: red;
 
+}
+
+.question {
+	font-family: 'Bungee', cursive;
+	font-size: 1.5rem;
 }
 
 .current-question {
 	display: grid;
-	background-color: cornflowerblue;
 	grid-template-rows: 20% 80%;
+	/* background-color: #512D6D; */
+	font-family: 'Kosugi Maru', sans-serif;
 }
 
 .questions {
-	background-color: burlywood;
+
 	height:max-content;
 	display: grid;
 	grid-template-columns: 50% 50%;
 	grid-template-rows: 50% 50%;
 	justify-items: center;
 	padding: 50px;
+	background-color: #F5A962;
+	font-family: 'Kosugi Maru', sans-serif;
 	/* flex-wrap: wrap;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -63,18 +84,21 @@ header{
 }
 
 .answer-choice {
+	font-family: 'Kosugi Maru', sans-serif;
 	background-color: #00c1d4;
 	color: white;
 	padding: 16px;
-	font-size: 16px;
-	border: none;
+	font-size: 20px;
 	width: 400px;
+	border-color:white;
 	border-radius: 20px;
 	margin-top: 10px;
 }
 
+
+
 .flash-green {
-	background-color: #9ddac6;
+	background-color: #91D18B;
 }
 
 .flash-red {
@@ -92,15 +116,13 @@ header{
 	/* border: none; */
 	border-color:white;
 	outline: none;
-	background-color: rgb(10, 54, 136);
-	color: white;
+	background-color: #FFE459;
+	color: #11052C;
 }
 
 #options {
-	border-radius: 30%;
+	background-color: #F14668;
 	width: 70px;
-	border: none;
-
 
 }
 
@@ -136,8 +158,9 @@ header{
 }
 
 .modal-content {
+	font-family: 'Kosugi Maru', sans-serif;
 	text-align: center;
-	background-color: #bbe1ec;
+	background-color: #512D6D;
 	border-style: solid 5px black;
 	height: 450px;
 	width: 450px;
@@ -145,10 +168,15 @@ header{
 	margin: 300px auto;
 	padding: 20px;
 	line-height: 1.5;
-	color: #371b77;
+	color: #EEEEEE;
+}
+
+.modal-textbook > p {
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #modal-buttons {
+	font-family: 'Kosugi Maru', sans-serif;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -161,6 +189,7 @@ header{
 
 .drop-btn {
 	background-color: #d11171;
+	font-family: 'Kosugi Maru', sans-serif;
 	color: white;
 	padding: 16px;
 	font-size: 16px;
