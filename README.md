@@ -19,6 +19,9 @@ Users can also select level of difficulty: Easy, Medium, Hard.
 
 The game will keep track of the users score and let them know how many they got correct at the end of a round. The game will be using the following API to generate questions: (https://opentdb.com/api_config.php).
 
+
+## Github Pages Link: 
+- https://sahirabibi.github.io/trivia-web-app/
 ## Wire Frames
 
 > Copy and paste or drag and drop your images here
