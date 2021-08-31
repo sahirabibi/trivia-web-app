@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
@@ -10,7 +9,13 @@
 </head>
 <body>  
     <header>
-        <h1>TRIVIA</h1>
+        <h1 id="main-title">
+            <span id="T">T</span>
+            <span id="R">R</span>
+            <span id="I">I</span>
+            <span id="V">V</span>
+            <span id="i">I</span>
+            <span id="A">A</span></h1>
     </header>
     <div class="main">
         <div class="info-content">
@@ -29,9 +34,14 @@
             <button class="answer-choice" id="3"></button>
         </div>
         <div class="options-button">
-            <button id="options">Options</button>
+            <button class="menu" id="options">Menu</button>
         </div>
-        
+        <footer>
+            <p id="copyright">&copy; 2021 Sahira Bibi</p>
+            <p id="credits">Background Image Credit:
+                <a href="https://www.freepik.com/vectors/light" id="attribution"> Light vector created by starline - www.freepik.com</a>
+            </p>
+        </footer>   
     </div>
     <div class="modal" id="start-modal">
         <div class="modal-content">
@@ -40,7 +50,7 @@
                 <p>Test your knowledge with ten multiple choice question!</p>
                 <p>Pick a category you'd like to be tested on and a level of difficulty!</p>
             </div>
-            <h3 id="final-score"></h3>
+            <h3 id="final-score">Final Score</h3>
             <div class="quiz-categories categories">
                     <button class="drop-btn" id="category">Category</button>
                     <div class="dropdown" id="category-menu">
@@ -64,11 +74,10 @@
             </div>
             <div id="modal-buttons">
                 <button class="start" id="main">Start</button>
-                <button class="start hidden" id="return">Return</button>
+                <button class="start hidden return" id="return">Return</button>
             </div>
         </div>
     </div>
-
     <!-- JS SCRIPT START -->
     <script src="js/script.js"></script>
 </body>
