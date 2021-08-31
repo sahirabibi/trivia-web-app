@@ -184,7 +184,11 @@ returnBtn.addEventListener('click', () => {
 - Add High Scores Sheet 
 - Add timed rounds
 
+// set high score
 
+// grab the users final score, category, level of difficulty
+// create a html table --> Category Mode Score
+// update high score after each round 
 
 
 
