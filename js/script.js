@@ -115,8 +115,6 @@ function endGame() {
 	startBtn.innerText = 'Play Again';
 	score.innerText = `FINAL SCORE: ${currentScore}`;
 	score.style.display = 'block';
-	// add final stats to high scores
-	updateScores(currentTopic, difficulty, currentScore);
 }
 
 class Question {

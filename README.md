@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Trivia is a game that tests users knowledge about a topic of their choice with ten multiple choice questions.
+Trivia is a frontend only game that tests users knowledge about a topic of their choice with ten multiple choice questions.
 
 Current categories are:
 
@@ -49,3 +49,29 @@ The game will keep track of the users score and let them know how many they got 
 **_ Gold _**
 
 - As a user, I would like to be able to share my score on facebook so that my friends and family can see how good my knowledge is.
+
+## Technologies Used
+
+- The web app was made via Visual Studio Code Version: 1.59.1 (Universal)
+- All questions came from Open Trivia Database via their API : (https://opentdb.com/api_config.php).
+
+## Installation Instructions
+
+- Fork this repository
+- Clone repository on your computer using "git clone {ssh-key}"
+- Open index.html and run code.
+- Your web browser should display the app on its local host.
+
+## Web App Display:
+
+### Starting Page
+
+![Trivia Starting Page View](https://user-images.githubusercontent.com/70290221/131585089-f6b13208-e9c3-43c6-8dc0-7681dae8e527.png)
+
+### Main Page
+
+![Trivia Main Page View](https://user-images.githubusercontent.com/70290221/131585133-22237742-4165-4d02-a1d2-a8f61a6093eb.png)
+
+## Credits:
+
+- Background image sourced from starline at freepik : "https://www.freepik.com/vectors/light"

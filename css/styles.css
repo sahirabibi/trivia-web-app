@@ -90,7 +90,6 @@ h1 > span {
 .question {
 	font-family: 'Bungee', cursive;
 	font-size: 3rem;
-	font: center;
 	z-index: 1;
 	position: relative;
 	color: #f43b86;
@@ -219,7 +218,6 @@ h1 > span {
 	font-family: 'Montserrat', sans-serif;
 	text-align: center;
 	background-color: #00c1d4;
-	border-style: solid 5px black;
 	height: 550px;
 	width: 550px;
 	border-radius: 20%;
