@@ -3,52 +3,60 @@ let questionsDB;
 let questionNum;
 let currentScore;
 let currentQuestion;
-let category = "18"; // default
-let difficulty = "easy"; // default
+let category = '18'; // default
+let difficulty = 'easy'; // default
 let url;
 let scoresData;
 /*----  Cached DOM Elements --- */
 
 const startModal = document.querySelector('.modal');
+//buttons
 const startBtn = document.querySelector('.start');
-const returnBtn = document.querySelector('.return')
+const returnBtn = document.querySelector('.return');
 const optionsBtn = document.querySelector('#options');
-const highScoreBtn = document.querySelector("#high-scores");
-const closeBtn = document.querySelector('#close')
+const categoryBtn = document.querySelector('#category');
+const difficultyBtn = document.querySelector('#difficulty');
+// main elements
 const score = document.querySelector('#final-score');
 const currentTopic = document.querySelector('#current-topic');
 const currentQ = document.querySelector('#question');
 const answers = document.querySelector('#answers');
 const modalText = document.querySelector('.modal-textbook');
-const categoryBtn = document.querySelector('#category');
-const difficultyBtn = document.querySelector('#difficulty');
+// drop-down menues
 const categoriesMenu = document.querySelector('#category-menu');
 const difficultyMenu = document.querySelector('#difficulty-menu');
-const scoreModal = document.querySelector("#score-modal");
-
 
 /*------------------- Functions -------------------*/
 
 function updateParams(button, id, target) {
+	// get params from user and set to element id
 	button.setAttribute('data-id', id);
 	button.innerText = target.innerText;
+}
+
+// toggle modals
+function toggleModal(targetModal) {
+	if (targetModal.style.display === 'none') {
+		targetModal.style.display = 'block';
+	} else {
+		targetModal.style.display = 'none';
+	}
 }
 
 /* -- Start Game and Check Progress -- */
 
 function init() {
 	// initialize game state variables
-	getScores();
 	questionsDB = [];
 	questionNum = 0;
 	currentScore = 0;
 	let userCategory = categoryBtn.getAttribute('data-id');
 	let userDifficulty = difficultyBtn.getAttribute('data-id');
 	if (userCategory) {
-		category = categoryBtn.getAttribute('data-id');
-	} 
+		category = userCategory;
+	}
 	if (userDifficulty) {
-		difficulty = difficultyBtn.getAttribute('data-id');
+		difficulty = userDifficulty;
 	}
 	url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
 	currentTopic.innerText = categoryBtn.innerText;
@@ -108,57 +116,7 @@ function endGame() {
 	score.innerText = `FINAL SCORE: ${currentScore}`;
 	score.style.display = 'block';
 	// add final stats to high scores
-	updateScores(currentTopic, difficulty, currentScore)
-}
-
-// update high scores
-
-function getScores() {
-	// at start of game, display all previous scores
-	scoresData = JSON.parse(localStorage.getItem('high-score'));
-	if (scoresData) {
-		// if scores present, add them to the table
-		scoresData.forEach((score) => displayScore(score));
-	} else {
-		scoresData = [];
-	}
-}
-
-function displayScore(score) {
-	// add score to the high scores table
-
-	let table = document.querySelector('#score-body');
-	// create row to put into tbody
-	let row = document.createElement('tr');
-	row.innerHTML = `<th>${score.category}</th>
-					<th>${score.level}</th>
-					<th>${score.score}</th>`;
-
-	// append row onto table
-	table.appendChild(row);
-}
-
-function updateScores(category, level, currentScore) {
-	// at the end of each game, add new score
-	let newScore = {
-		category: category.innerText,
-		level: level,
-		score: currentScore,
-	};
-	// push onto scoresData
-	scoresData.push(newScore);
-	// add updates scores data to local storage
-	localStorage.setItem('high-score', JSON.stringify(scoresData));
-}
-
-
-// toggle modals 
-function toggleModal(targetModal) {
-	if (targetModal.style.display === 'none') {
-		targetModal.style.display = 'block';
-	} else {
-		targetModal.style.display = 'none';
-	}
+	updateScores(currentTopic, difficulty, currentScore);
 }
 
 class Question {
@@ -214,27 +172,21 @@ answers.addEventListener('click', (e) => {
 		checkAnswer(currentQuestion.correct, e.target.id, e.target);
 		// check if game is over
 		if (isGameOver()) {
-			setTimeout(function() {endGame()}, 1000);
+			setTimeout(function () {
+				endGame();
+			}, 1000);
 		}
 	}
 });
 
-optionsBtn.addEventListener("click", () => {
+optionsBtn.addEventListener('click', () => {
 	toggleModal(startModal);
-	returnBtn.style.display = "inline-block"
-	startBtn.innerText = 'Restart'
+	returnBtn.style.display = 'inline-block';
+	startBtn.innerText = 'Restart';
 	modalText.innerHTML = `<h2>Trivia!</h2>
-	<h3>Choose a new category or return to your game.</h3>`;	
+	<h3>Choose a new category or return to your game.</h3>`;
 });
 
 returnBtn.addEventListener('click', () => {
 	toggleModal(startModal);
 });
-
-highScoreBtn.addEventListener('click', () => {
-	toggleModal(scoreModal);
-})
-
-closeBtn.addEventListener('click', () => {
-	toggleModal(scoreModal)
-})

@@ -1,12 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Kosugi+Maru&family=Press+Start+2P&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Rampart+One&family=Share+Tech+Mono&family=Tajawal&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 body {
 	margin: 0 auto;
-	/* width:fit-content; */
 	display: grid;
 	grid-template-rows: 15% 80% 10%;
 	background-color: #eeeeee;
@@ -14,6 +10,8 @@ body {
 	background-image: url('../assets/bg-white-qs.jpg');
 	background-size: cover;
 }
+
+/* Header */
 
 header {
 	display: flex;
@@ -57,27 +55,21 @@ h1 > span {
 	background-color: #ff2442;
 }
 
+/* Main Content */
+
 .main {
 	display: grid;
 	grid-template-rows: 30% 30% 20%;
 }
 .info-content {
-	/* flex-direction: column;
-	align-items: center; */
-	/* background-color: #6B011F; */
 	display: block;
 	flex-direction: row;
 	justify-content: space-around;
 	font-family: 'Kosugi Maru', sans-serif;
 }
 
-.nav {
-	background-color: #ffe459;
-}
-
+/* Current Topic */
 .topic {
-	/* flex-direction: column;
-	align-items: center; */
 	display: grid;
 	justify-content: center;
 }
@@ -93,6 +85,8 @@ h1 > span {
 	box-shadow: 5px 10px #888888;
 }
 
+/* Question Display */
+
 .question {
 	font-family: 'Bungee', cursive;
 	font-size: 3rem;
@@ -106,7 +100,6 @@ h1 > span {
 #question {
 	color: white;
 	font-family: 'Montserrat', sans-serif;
-	/* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	 */
 	font-weight: 900;
 }
 
@@ -126,6 +119,8 @@ h1 > span {
 	border-radius: 20px;
 	box-shadow: 5px 10px #888888;
 }
+
+/* Answer Display */
 
 .questions {
 	height: max-content;
@@ -153,21 +148,23 @@ h1 > span {
 	margin-top: 2px;
 }
 
+/* Buttons */
+
 #options,
-.start, #high-scores {
+.start,
+#high-scores {
 	border-radius: 50%;
-	/* padding: 10px 10px; */
 	height: 50px;
 	width: 100px;
 	margin: 0px 30px;
-	/* border: none; */
 	border-color: white;
 	outline: none;
 	background-color: #ffe459;
 	color: #11052c;
 }
 
-#options, #high-scores {
+#options,
+#high-scores {
 	background-color: #f43b86;
 	margin: 0 auto;
 	border-radius: 20px;
@@ -187,13 +184,23 @@ h1 > span {
 	margin-right: 50px;
 }
 
+.flash-green {
+	background-color: #91d18b;
+	color: white;
+}
+
+.flash-red {
+	background-color: #ff4848;
+	color: white;
+}
+
 /* Modal */
 #start-modal {
 	display: block;
 }
 
-
-#end,  #score-modal {
+#end,
+#score-modal {
 	display: none;
 }
 
@@ -209,7 +216,6 @@ h1 > span {
 }
 
 .modal-content {
-	/* font-family: 'Kosugi Maru', sans-serif; */
 	font-family: 'Montserrat', sans-serif;
 	text-align: center;
 	background-color: #00c1d4;
@@ -232,7 +238,7 @@ h1 > span {
 .modal-textbook > p {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
-	color:white;
+	color: white;
 }
 
 #modal-buttons {
@@ -253,7 +259,6 @@ h1 > span {
 	color: white;
 	padding: 16px;
 	font-size: 16px;
-	/* border: none; */
 	border-color: white;
 	width: 300px;
 	border-radius: 20px;
@@ -281,12 +286,10 @@ h1 > span {
 	overflow-x: scroll;
 }
 
-/* Change color of dropdown links on hover */
 .dropdown p:hover {
-	background-color: rgb(243, 205, 224);
+	background-color: rgb(238, 138, 188);
 }
 
-/* Show the dropdown menu on hover */
 .quiz-categories:hover .dropdown {
 	display: block;
 	width: 300px;
@@ -308,38 +311,13 @@ h1 > span {
 
 #return:hover,
 #main:hover,
-#options:hover {
+#options:hover,
+#high-scores:hover {
 	background-color: rgb(99, 99, 212);
 	color: white;
 }
 
-.flash-green {
-	background-color: #91d18b;
-	color: white;
-}
-
-.flash-red {
-	background-color: #ff4848;
-	color: white;
-}
-
-/* Score Modal */
-
-#score-modal > .modal-content {
-	display: grid;
-	align-content: space-between;
-	
-}
-
-/* Table */
-table {
-	width: 100%;
-}
-
-#close-button{
-	display: flex;
-	justify-content: center;
-}
+/* Footer */
 
 footer {
 	display: block;
@@ -375,7 +353,8 @@ p > a {
 		flex-grow: 1;
 	}
 
-	#options, #high-scores {
+	#options,
+	#high-scores {
 		border-radius: 10%;
 		font-size: 20px;
 		color: #eeee;
