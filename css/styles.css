@@ -323,6 +323,24 @@ h1 > span {
 	color: white;
 }
 
+/* Score Modal */
+
+#score-modal > .modal-content {
+	display: grid;
+	align-content: space-between;
+	
+}
+
+/* Table */
+table {
+	width: 100%;
+}
+
+#close-button{
+	display: flex;
+	justify-content: center;
+}
+
 footer {
 	display: block;
 	text-align: center;
@@ -415,7 +433,7 @@ p > a {
 
 	.modal-content {
 		width: 85%;
-		height: 55%;
+		height: 90%;
 		border-radius: 10%;
 		margin: 300px auto;
 		padding: 20px;

@@ -3,10 +3,10 @@ let questionsDB;
 let questionNum;
 let currentScore;
 let currentQuestion;
-let category = "18";
-let difficulty = "easy";
+let category = "18"; // default
+let difficulty = "easy"; // default
 let url;
-let scoreData = [];
+let scoresData;
 /*----  Cached DOM Elements --- */
 
 const startModal = document.querySelector('.modal');
@@ -27,7 +27,6 @@ const difficultyMenu = document.querySelector('#difficulty-menu');
 const scoreModal = document.querySelector("#score-modal");
 
 
-
 /*------------------- Functions -------------------*/
 
 function updateParams(button, id, target) {
@@ -39,7 +38,7 @@ function updateParams(button, id, target) {
 
 function init() {
 	// initialize game state variables
-	displayHighScores();
+	getScores();
 	questionsDB = [];
 	questionNum = 0;
 	currentScore = 0;
@@ -109,9 +108,48 @@ function endGame() {
 	score.innerText = `FINAL SCORE: ${currentScore}`;
 	score.style.display = 'block';
 	// add final stats to high scores
-	updateScoreData(currentTopic, difficulty, currentScore)
+	updateScores(currentTopic, difficulty, currentScore)
 }
 
+// update high scores
+
+function getScores() {
+	// at start of game, display all previous scores
+	scoresData = JSON.parse(localStorage.getItem('high-score'));
+	if (scoresData) {
+		// if scores present, add them to the table
+		scoresData.forEach((score) => displayScore(score));
+	} else {
+		scoresData = [];
+	}
+}
+
+function displayScore(score) {
+	// add score to the high scores table
+
+	let table = document.querySelector('#score-body');
+	// create row to put into tbody
+	let row = document.createElement('tr');
+	row.innerHTML = `<th>${score.category}</th>
+					<th>${score.level}</th>
+					<th>${score.score}</th>`;
+
+	// append row onto table
+	table.appendChild(row);
+}
+
+function updateScores(category, level, currentScore) {
+	// at the end of each game, add new score
+	let newScore = {
+		category: category.innerText,
+		level: level,
+		score: currentScore,
+	};
+	// push onto scoresData
+	scoresData.push(newScore);
+	// add updates scores data to local storage
+	localStorage.setItem('high-score', JSON.stringify(scoresData));
+}
 
 
 // toggle modals 
@@ -176,7 +214,7 @@ answers.addEventListener('click', (e) => {
 		checkAnswer(currentQuestion.correct, e.target.id, e.target);
 		// check if game is over
 		if (isGameOver()) {
-			setTimeout(function() {endGame()}, 2000);
+			setTimeout(function() {endGame()}, 1000);
 		}
 	}
 });
@@ -200,314 +238,3 @@ highScoreBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
 	toggleModal(scoreModal)
 })
-
-
-
-
-
-// 
-// Handle Storage
-
-// stores key:value pairs 
-
-
-function getHighScores() {
-	// display high scores in table 
-	// convert from string array to submit to table
-	let strData = localStorage.getItem("high-score");
-	if (strData){
-		scoreData = JSON.parse(strData);
-	
-	} else {
-		scoreData = [];
-	}
-}
-
-// function score(category, level, score) {
-	
-// }
-
-function updateScoreData(category, level, currentScore) {
-	let newScore = {
-		category:category.innerText,
-		level: level,
-		score:currentScore,
-	}
-	scoreData.push(newScore);
-	// add score to high scores table 
-	addScore(newScore)
-	// add updated scores data to local storage 
-	localStorage.setItem("high-score", JSON.stringify(scoreData))
-}
-
-function addScore(score) {
-	// add score to the high scores table
-
-	let table = document.querySelector('#score-body');
-	// create row to put into tbody
-	let row = document.createElement('tr');
-	row.innerHTML = `<th>${score.category}</th>
-					<th>${score.level}</th>
-					<th>${score.score}</th>`;
-
-	// append row onto table
-	table.appendChild(row);
-	
-}
-
-function displayHighScores() {
-	let scores = localStorage.getItem("high-score");
-	if (scores) {
-		// if scores present, add them to the table
-		JSON.parse(scores).forEach(score => addScore(score))
-	} 
-} 
-
-
-
-
-// after adding score
-// add the book to the local storage
-// loop through scoreData and then add book to table
-// at the end of a game
-// grab the current score, the current category, and level
-// create an object from this and send it to addScore so it can be added to the table
-	// in function-> loop through the array, 
-		// if current object is in array and the score is less then the current score 
-		// set that objects score to the new score
-// send this obj to local storage and set it as an item 
-
-
-
-
-// Save score local storage
-function saveHighScore(currentScore) {
-	// save current score to high score
-	localStorage.setItem('High Score', currentScore)
-	// get high score 
-	let previousScore = localStorage.getItem('High Score')
-	if (previousScore) {
-		if (previousScore < currentScore) {
-			// if previousScore is present and less than current score
-			// update previous score to be current score
-			localStorage.setItem("High Score", currentScore)
-		}	
-		
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-
-
-/* ------------
-
-- Add Num Question Options 
-- Add High Scores Sheet 
-- Add timed rounds
-
-// set high score
-
-// grab the users final score, category, level of difficulty
-// create a html table --> Category Mode Score
-// function -> AddScore
-	// check if current cat, mode are in table
-		// if so,
-			// check if current score is > new score
-				// if so --> change old score
-	// else 
-		// add new cat, mode, and score to table
-
-// Data Persistence 
-
-
-// grab event that will cause storage --> when game ends
-// grab current score
-
------------*/
-
-////////////////// Removed Functions START ///////////////////
-
-// function nextQuestion() {
-//     // gets the next question in the database and calls render on it
-//     if (questionNum < 10) {
-//         questionNum++;
-//         render(questionsDB[questionNum])
-//     } else {
-//         console.log("Game Over")
-//     }
-// }
-
-/*- Hide and Show Start Modal -*/
-// add event listener to start button to close modal and begin game
-// startBtn.addEventListener('click', () => {
-// 	toggleModal(startModal);
-// 	// initialize game
-// 	// displayQuestion(questions)
-//     init();
-// });
-
-// function question(results) {
-// 	// creates a single question obj and randomizes the answer choices before sending obj to questions array
-// 		let text = results.question;
-// 		let answers = results.incorrect_answers;
-// 		let correctAns = results.correct_answer;
-// 		// add correct answer to random location in array
-// 		let ranNum = Math.floor(Math.random() * 4);
-// 		this.answers.splice(ranNum, 0, correctAns);
-// 		let correct = answers.indexOf(correctAns);
-//         let new_question = {text : text, answers: answers, correct: correct}
-//         questions.push(new_question);
-
-// }
-
-/* ----- Get Question and Create Questions Data Base ---- */
-
-// function getData(url) {
-// 	// use url to fetch data
-// 	// send data to formatData() to render it on page
-// 	return (fetch(url)
-// 		.then((res) => res.json())
-// 		.then((res) => {
-// 			createQuestions(res.results);
-// 		})
-// 		.catch((error) => {
-// 			console.log('Something went wrong.', error);
-// 		}));
-// }
-
-// fetch(url)
-// 	.then((res) => res.json())
-// 	.then((res) => {
-// 			createQuestions(res.results);
-// 	})
-// 	.catch((error) => {
-// 			console.log('Something went wrong.', error);
-// 	});
-
-// State Variables
-// url takes three params: category #, difficulty, and type = [easy, medium, hard]
-
-// let paramsObj = {"category": "18", "type": "multiple", "difficulty": "easy"}
-
-// categoriesMenu.addEventListener('click', (e) => {
-// 	let category;
-// 	if (e.target.tagName === 'P') {
-// 		category = e.target.id;
-// 		categoryBtn.innerText = e.target.innerText;
-// 	}
-// });
-
-// difficultyMenu.addEventListener('click', (e) => {
-// 	if (e.target.tagName === 'P') {
-// 		difficulty = e.target.id;
-// 		difficultyBtn.innerText = e.target.innerText;
-// 	}
-// });
-
-// function updateURL() {
-
-// function getCategory() {
-// 	if (e.target.tagName === 'P') {
-// 		category = e.target.id;
-// 		categoryBtn.innerText = e.target.innerText;
-// 	}
-// }
-
-// function getDifficulty() {
-// 	if (e.target.tagName === 'P') {
-// 		difficulty = e.target.id;
-// 		difficultyBtn.innerText = e.target.innerText;
-// 	}
-// }
-
-
-////////////////// Removed Functions END ///////////////////
-
-/////////////////// GAME LOGIC ///////////////////////
-// API DATA:
-// "results" : [obj, obj, obj]
-// "category": "science: computers"
-// "question": "str"
-// "correct_answer": "str"
-// "incorrect_answer": ["str", "str", "str"]
-
-//PAGE LOAD
-// User sees modal with a brief description of game and a start button
-// Hits start
-// Modal toggled to display none
-// trigger getQuestions() to retrieve data
-
-// Display Question and Answers to User
-// "click" event listener to start button
-// if clicked
-// use getQuestions to fetch data from API and store it
-// send first obj in array to displayQuestion
-// remove first obj so the question is not repeated
-
-// send data to displayQuestion()
-// display question will set the current question on the page
-// set #question to data.question
-// FOR EACH: set #answers to data.choice
-// set event listener to each answer choice button
-// if "click"
-// sent current choice to checkAnswer();
-// if target.innerText is same as data.correct_answer
-// return true
-// else return false
-// if success -->
-//change target background color to red
-// update score by 1
-// decrease currentQuestion -1
-// else
-// target.style.backgroundColor = red
-// display next question
-
-// GAME ENDS
-// if user clicks Options
-// display reset button
-// "click" on reset --> start over
-// if no more questions left
-// currentQuestion = 0;
-
-// create endGame()
-
-// for endgame change modal content to display user score
-// change start button to display play again
-
-/// grab category id
-// grab difficulty id
-
-// APPROACH
-// function that gets inputs and returns a modified url
