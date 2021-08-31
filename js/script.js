@@ -16,6 +16,9 @@ const returnBtn = document.querySelector('.return');
 const optionsBtn = document.querySelector('#options');
 const categoryBtn = document.querySelector('#category');
 const difficultyBtn = document.querySelector('#difficulty');
+const scoreModal = document.querySelector('#score-modal');
+const highScoreBtn = document.querySelector('#high-scores');
+const closeBtn = document.querySelector('#close');
 // main elements
 const score = document.querySelector('#final-score');
 const currentTopic = document.querySelector('#current-topic');
@@ -47,6 +50,7 @@ function toggleModal(targetModal) {
 
 function init() {
 	// initialize game state variables
+	getScores();
 	questionsDB = [];
 	questionNum = 0;
 	currentScore = 0;
@@ -115,6 +119,51 @@ function endGame() {
 	startBtn.innerText = 'Play Again';
 	score.innerText = `FINAL SCORE: ${currentScore}`;
 	score.style.display = 'block';
+	// add final stats to high scores
+	updateScores(currentTopic, difficulty, currentScore);
+}
+
+// update high scores
+
+function getScores() {
+	// at start of game, display all previous scores
+	scoresData = JSON.parse(localStorage.getItem('high-score'));
+	if (scoresData) {
+		// clear table
+		let tbody = document.querySelector('tbody');
+		while (tbody.firstChild.id !== 'criteria') {
+			tbody.removeChild(tbody.firstChild);
+		}
+		// if scores present, add them to the table
+		scoresData.forEach((score) => displayScore(score));
+	} else {
+		scoresData = [];
+	}
+}
+
+function displayScore(score) {
+	// add score to the high scores table
+	let table = document.querySelector('#score-body');
+	// create row to put into tbody
+	let row = document.createElement('tr');
+	row.innerHTML = `<th>${score.category}</th>
+					<th>${score.level}</th>
+					<th>${score.score}</th>`;
+
+	// append row onto table
+	table.appendChild(row);
+}
+
+function updateScores(category, level, currentScore) {
+	// at the end of each game, add new score
+	let newScore = {
+		category: category.innerText,
+		level: level,
+		score: currentScore,
+	};
+	scoresData.push(newScore);
+	// add updates scores data to local storage
+	localStorage.setItem('high-score', JSON.stringify(scoresData));
 }
 
 class Question {
@@ -187,4 +236,12 @@ optionsBtn.addEventListener('click', () => {
 
 returnBtn.addEventListener('click', () => {
 	toggleModal(startModal);
+});
+
+highScoreBtn.addEventListener('click', () => {
+	toggleModal(scoreModal);
+});
+
+closeBtn.addEventListener('click', () => {
+	toggleModal(scoreModal);
 });

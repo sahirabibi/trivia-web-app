@@ -315,6 +315,24 @@ h1 > span {
 	color: white;
 }
 
+/* Table and Score Modal */
+table {
+	width: 100%;
+	padding: 40px;
+}
+
+#score-modal > .modal-content {
+	padding: 20px;
+	display: grid;
+	align-content: space-between;
+	color: white;
+}
+
+#close-button {
+	display: flex;
+	justify-content: center;
+}
+
 /* Footer */
 
 footer {

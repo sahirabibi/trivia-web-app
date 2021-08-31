@@ -35,6 +35,7 @@
         </div>
         <div class="options-button">
             <button class="menu" id="options">Menu</button>
+            <button id="high-scores">Scores</button>
         </div>
         <footer>
             <p id="copyright">&copy; 2021 Sahira Bibi</p>
@@ -77,6 +78,23 @@
                 <button class="start hidden return" id="return">Return</button>
             </div>
         </div>
+    </div>
+    <div class="modal hidden" id="score-modal">
+        <div class="modal-content">
+            <table>
+                <tbody id="score-body">  
+                    <tr id="criteria">
+                        <th id="score-category">Category</th>
+                        <th id="score-level">Level</th>
+                        <th id="score">Score</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="close-button">
+                <button class="start return" id="close">Close</button>
+            </div>
+        </div>
+    </div>
     </div>
     <!-- JS SCRIPT START -->
     <script src="js/script.js"></script>
