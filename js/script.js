@@ -50,6 +50,7 @@ function toggleModal(targetModal) {
 
 function init() {
 	// initialize game state variables
+	clearScores()
 	getScores();
 	questionsDB = [];
 	questionNum = 0;
@@ -130,10 +131,8 @@ function getScores() {
 	scoresData = JSON.parse(localStorage.getItem('high-score'));
 	if (scoresData) {
 		// clear table
-		let tbody = document.querySelector('tbody');
-		while (tbody.firstChild.id !== 'criteria') {
-			tbody.removeChild(tbody.firstChild);
-		}
+		clearScores();
+		scoresData.sort((a, b) => b.score - a.score)
 		// if scores present, add them to the table
 		scoresData.forEach((score) => displayScore(score));
 	} else {
@@ -178,6 +177,13 @@ class Question {
 		this.answers.splice(ranNum, 0, this.correct);
 		// replace correct value with index value of correct answer
 		this.correct = this.answers.indexOf(this.correct);
+	}
+}
+
+function clearScores() {
+	let tbody = document.querySelector('tbody');
+	while (tbody.firstChild.id !== 'criteria') {
+		tbody.removeChild(tbody.firstChild);
 	}
 }
 
