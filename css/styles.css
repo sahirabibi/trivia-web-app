@@ -333,6 +333,16 @@ h1 > span {
 	color: white;
 }
 
+footer {
+	display: block;
+	text-align: center;
+	padding: 20px;
+	margin: 0 auto;
+}
+
+footer, p>a {
+	color: rgb(187, 183, 183);
+}
 
 
 @media (max-width: 800px) {
