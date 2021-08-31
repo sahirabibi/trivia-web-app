@@ -4,19 +4,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-
 body {
-	
 	margin: 0 auto;
 	/* width:fit-content; */
 	display: grid;
 	grid-template-rows: 15% 80% 10%;
 	background-color: #eeeeee;
 	color: #11698e;
-	background-image: url("../assets/bg-white-qs.jpg");
+	background-image: url('../assets/bg-white-qs.jpg');
 	background-size: cover;
-	
-
 }
 
 header {
@@ -24,44 +20,41 @@ header {
 	justify-content: center;
 	height: 100%;
 	margin-bottom: 20px;
-	background-color: #F43B86;;
-	width:100%;
-	
+	background-color: #f43b86;
+	width: 100%;
 }
 header > h1 {
 	font-family: 'Bungee', cursive;
-	color:white;
-	font-size:75px;
+	color: white;
+	font-size: 75px;
 	margin-bottom: 20px;
-	margin-top:20px;
-	
-} 
+	margin-top: 20px;
+}
 
 h1 > span {
 	border-radius: 50%;
-	padding: 15px;	
+	padding: 15px;
 }
 
-#T{
-	background-color:rgb(99, 99, 212);
+#T {
+	background-color: rgb(99, 99, 212);
 }
 
-#R, #A {
-	background-color: #3DB2FF
+#R,
+#A {
+	background-color: #3db2ff;
 }
 
 #I {
-	background-color: #FFE459;
-
+	background-color: #ffe459;
 }
 
 #V {
-	background-color:#80ED99;
+	background-color: #80ed99;
 }
 
 #i {
-	background-color: #FF2442;
-
+	background-color: #ff2442;
 }
 
 .main {
@@ -79,7 +72,7 @@ h1 > span {
 }
 
 .nav {
-	background-color: #FFE459;
+	background-color: #ffe459;
 }
 
 .topic {
@@ -92,7 +85,7 @@ h1 > span {
 #current-topic {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 2rem;
-	background-color: #00C1D4;
+	background-color: #00c1d4;
 	padding: 40px;
 	color: white;
 	border-radius: 50%;
@@ -106,12 +99,12 @@ h1 > span {
 	font: center;
 	z-index: 1;
 	position: relative;
-	color: #F43B86;
+	color: #f43b86;
 	margin-bottom: 120px;
 }
 
 #question {
-	color:white;
+	color: white;
 	font-family: 'Montserrat', sans-serif;
 	/* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	 */
 	font-weight: 900;
@@ -124,15 +117,14 @@ h1 > span {
 	font-family: 'Kosugi Maru', sans-serif;
 	text-align: center;
 	align-items: center;
-	background-color: #00C1D4;
-	color:white;
+	background-color: #00c1d4;
+	color: white;
 	height: 70%;
 	width: 70%;
 	padding: 20px;
 	justify-content: center;
 	border-radius: 20px;
 	box-shadow: 5px 10px #888888;
-	
 }
 
 .questions {
@@ -145,11 +137,10 @@ h1 > span {
 	font-family: 'Kosugi Maru', sans-serif;
 }
 
-
 .answer-choice {
 	font-family: 'Kosugi Maru', sans-serif;
-	background-color: #FFE459;
-	font-size:1.5rem;
+	background-color: #ffe459;
+	font-size: 1.5rem;
 	color: black;
 	padding: 16px;
 	font-size: 20px;
@@ -161,8 +152,6 @@ h1 > span {
 	box-shadow: 2px 4px #888888;
 	margin-top: 2px;
 }
-
-
 
 #options,
 .start {
@@ -179,10 +168,10 @@ h1 > span {
 }
 
 #options {
-	background-color: #F43B86;
-	margin: 0 auto;	
+	background-color: #f43b86;
+	margin: 0 auto;
 	border-radius: 20px;
-	color:#EEEE;
+	color: #eeee;
 }
 
 .options-button {
@@ -221,28 +210,30 @@ h1 > span {
 }
 
 .modal-content {
-	font-family: 'Kosugi Maru', sans-serif;
+	/* font-family: 'Kosugi Maru', sans-serif; */
+	font-family: 'Montserrat', sans-serif;
 	text-align: center;
-	background-color: #00C1D4;
+	background-color: #00c1d4;
 	border-style: solid 5px black;
 	height: 550px;
-	width: 450px;
+	width: 550px;
 	border-radius: 20%;
 	margin: 300px auto;
 	padding: 20px;
 	line-height: 1.5;
-	color: black;
 	font-size: 20px;
-	
+	border: 3px solid #086c75;
 }
 
 .modal-textbook > h2 {
 	font-family: 'Montserrat', sans-serif;
-	color:white;
+	color: white;
 }
 
 .modal-textbook > p {
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color:white;
 }
 
 #modal-buttons {
@@ -310,7 +301,6 @@ h1 > span {
 
 .quiz-categories:hover .drop-btn {
 	background-color: #3d062b;
-	
 }
 
 .hidden {
@@ -318,9 +308,10 @@ h1 > span {
 }
 
 #return:hover,
-#main:hover, #options:hover {
+#main:hover,
+#options:hover {
 	background-color: rgb(99, 99, 212);
-	color:white;
+	color: white;
 }
 
 .flash-green {
@@ -340,16 +331,21 @@ footer {
 	margin: 0 auto;
 }
 
-footer, p>a {
+footer,
+p > a {
 	color: rgb(187, 183, 183);
 }
-
 
 @media (max-width: 800px) {
 	/* Main Content */
 	body {
 		margin: 0 auto;
 	}
+
+	header {
+		height: 70%;
+	}
+
 	.main {
 		display: block;
 		justify-content: center;
@@ -365,8 +361,8 @@ footer, p>a {
 	#options {
 		border-radius: 10%;
 		font-size: 20px;
-		color:#EEEE;
-		width:40%;
+		color: #eeee;
+		width: 40%;
 		justify-self: center;
 	}
 
@@ -386,12 +382,11 @@ footer, p>a {
 		margin-bottom: 30px;
 	}
 
-
 	#question {
-		font-size: 2.0rem;
+		font-size: 2rem;
 		font-family: 'Montserrat', sans-serif;
 		font-weight: 600;
-		margin:0 auto;
+		margin: 0 auto;
 	}
 
 	/* Answer Choices */
@@ -403,7 +398,7 @@ footer, p>a {
 		padding: 20px;
 		margin: 0px;
 		width: 100%;
-		height:40%;
+		height: 40%;
 	}
 
 	.answer-choice {
@@ -420,12 +415,18 @@ footer, p>a {
 	/* Modal */
 
 	.modal-content {
-		width: 88%;
-		height: 500px;
+		width: 85%;
+		height: 55%;
 		border-radius: 10%;
 		margin: 300px auto;
 		padding: 20px;
 		line-height: 1.5;
 		color: #eeeeee;
+	}
+}
+
+@media (max-width: 560px) {
+	h1 > span {
+		font-size: 1rem;
 	}
 }

@@ -97,6 +97,24 @@ function endGame() {
 	score.style.display = 'block';
 }
 
+
+// Save score local storage
+function saveHighScore(currentScore) {
+	// save current score to high score
+	localStorage.setItem('High Score', currentScore)
+	// get high score 
+	let previousScore = localStorage.getItem('High Score')
+	if (previousScore) {
+		if (previousScore < currentScore) {
+			// if previousScore is present and less than current score
+			// update previous score to be current score
+			localStorage.setItem("High Score", currentScore)
+		}	
+		
+	}
+}
+
+// toggle modals 
 function toggleModal(targetModal) {
 	if (targetModal.style.display === 'none') {
 		targetModal.style.display = 'block';
@@ -167,7 +185,7 @@ answers.addEventListener('click', (e) => {
 optionsBtn.addEventListener("click", () => {
 	toggleModal(startModal);
 	returnBtn.style.display = "inline-block"
-	startBtn.innerText = "Restart"
+	startBtn.innerText = 'Restart'
 	modalText.innerHTML = `<h2>Trivia!</h2>
 	<h3>Choose a new category or return to your game.</h3>`;	
 });
@@ -175,6 +193,8 @@ optionsBtn.addEventListener("click", () => {
 returnBtn.addEventListener('click', () => {
 	toggleModal(startModal);
 });
+
+
 
 
 
@@ -188,10 +208,19 @@ returnBtn.addEventListener('click', () => {
 
 // grab the users final score, category, level of difficulty
 // create a html table --> Category Mode Score
-// update high score after each round 
+// function -> AddScore
+	// check if current cat, mode are in table
+		// if so,
+			// check if current score is > new score
+				// if so --> change old score
+	// else 
+		// add new cat, mode, and score to table
+
+// Data Persistence 
 
 
-
+// grab event that will cause storage --> when game ends
+// grab current score
 
 -----------*/
 
