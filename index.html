@@ -35,15 +35,14 @@
         </div>
         <div class="options-button">
             <button class="menu" id="options">Menu</button>
+            <button id="high-scores">High Scores</button>
         </div>
         <footer>
             <p id="copyright">&copy; 2021 Sahira Bibi</p>
             <p id="credits">Background Image Credit:
                 <a href="https://www.freepik.com/vectors/light" id="attribution"> Light vector created by starline - www.freepik.com</a>
             </p>
-        </footer>
-       
-        
+        </footer>   
     </div>
     <div class="modal" id="start-modal">
         <div class="modal-content">
@@ -76,8 +75,28 @@
             </div>
             <div id="modal-buttons">
                 <button class="start" id="main">Start</button>
-                <button class="start hidden" id="return">Return</button>
+                <button class="start hidden return" id="return">Return</button>
             </div>
+        </div>
+    </div>
+    <div class="modal hidden" id="score-modal">
+        <div class="modal-content">
+            <table>
+                <tbody id="score-body">
+                    <tr id="criteria">
+                        <th id="score-category">Category</th>
+                        <th id="score-level">Level</th>
+                        <th id="score-high-score">High Score</th>
+                    </tr>
+                    <tr>
+                        <th>General Knowledge</th>
+                        <th>Easy</th>
+                        <th>Current Score</th>
+                    </tr>
+                </tbody>
+                
+            </table>
+            <button class="start return" id="close">Close</button>
         </div>
     </div>
 

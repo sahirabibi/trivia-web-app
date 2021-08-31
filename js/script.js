@@ -3,15 +3,18 @@ let questionsDB;
 let questionNum;
 let currentScore;
 let currentQuestion;
-let category;
-let difficulty;
+let category = "18";
+let difficulty = "easy";
 let url;
+let scoreData = [];
 /*----  Cached DOM Elements --- */
 
 const startModal = document.querySelector('.modal');
 const startBtn = document.querySelector('.start');
-const returnBtn = document.querySelector('#return')
+const returnBtn = document.querySelector('.return')
 const optionsBtn = document.querySelector('#options');
+const highScoreBtn = document.querySelector("#high-scores");
+const closeBtn = document.querySelector('#close')
 const score = document.querySelector('#final-score');
 const currentTopic = document.querySelector('#current-topic');
 const currentQ = document.querySelector('#question');
@@ -21,6 +24,9 @@ const categoryBtn = document.querySelector('#category');
 const difficultyBtn = document.querySelector('#difficulty');
 const categoriesMenu = document.querySelector('#category-menu');
 const difficultyMenu = document.querySelector('#difficulty-menu');
+const scoreModal = document.querySelector("#score-modal");
+
+
 
 /*------------------- Functions -------------------*/
 
@@ -33,11 +39,18 @@ function updateParams(button, id, target) {
 
 function init() {
 	// initialize game state variables
+	displayHighScores();
 	questionsDB = [];
 	questionNum = 0;
 	currentScore = 0;
-	category = categoryBtn.getAttribute('data-id');
-	difficulty = difficultyBtn.getAttribute('data-id');
+	let userCategory = categoryBtn.getAttribute('data-id');
+	let userDifficulty = difficultyBtn.getAttribute('data-id');
+	if (userCategory) {
+		category = categoryBtn.getAttribute('data-id');
+	} 
+	if (userDifficulty) {
+		difficulty = difficultyBtn.getAttribute('data-id');
+	}
 	url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
 	currentTopic.innerText = categoryBtn.innerText;
 	currentQuestion = questionsDB[questionNum];
@@ -95,24 +108,11 @@ function endGame() {
 	startBtn.innerText = 'Play Again';
 	score.innerText = `FINAL SCORE: ${currentScore}`;
 	score.style.display = 'block';
+	// add final stats to high scores
+	updateScoreData(currentTopic, difficulty, currentScore)
 }
 
 
-// Save score local storage
-function saveHighScore(currentScore) {
-	// save current score to high score
-	localStorage.setItem('High Score', currentScore)
-	// get high score 
-	let previousScore = localStorage.getItem('High Score')
-	if (previousScore) {
-		if (previousScore < currentScore) {
-			// if previousScore is present and less than current score
-			// update previous score to be current score
-			localStorage.setItem("High Score", currentScore)
-		}	
-		
-	}
-}
 
 // toggle modals 
 function toggleModal(targetModal) {
@@ -139,7 +139,6 @@ class Question {
 }
 
 /* ----------------------- Main Game Events ---------------------*/
-
 // get user choices for quiz type
 categoriesMenu.addEventListener('click', function getCategory(e) {
 	if (e.target.tagName === 'P') {
@@ -194,8 +193,142 @@ returnBtn.addEventListener('click', () => {
 	toggleModal(startModal);
 });
 
+highScoreBtn.addEventListener('click', () => {
+	toggleModal(scoreModal);
+})
+
+closeBtn.addEventListener('click', () => {
+	toggleModal(scoreModal)
+})
 
 
+
+
+
+// 
+// Handle Storage
+
+// stores key:value pairs 
+
+
+function getHighScores() {
+	// display high scores in table 
+	// convert from string array to submit to table
+	let strData = localStorage.getItem("high-score");
+	if (strData){
+		scoreData = JSON.parse(strData);
+	
+	} else {
+		scoreData = [];
+	}
+}
+
+// function score(category, level, score) {
+	
+// }
+
+function updateScoreData(category, level, currentScore) {
+	let newScore = {
+		category:category.innerText,
+		level: level,
+		score:currentScore,
+	}
+	scoreData.push(newScore);
+	// add score to high scores table 
+	addScore(newScore)
+	// add updated scores data to local storage 
+	localStorage.setItem("high-score", JSON.stringify(scoreData))
+}
+
+function addScore(score) {
+	// add score to the high scores table
+
+	let table = document.querySelector('#score-body');
+	// create row to put into tbody
+	let row = document.createElement('tr');
+	row.innerHTML = `<th>${score.category}</th>
+					<th>${score.level}</th>
+					<th>${score.score}</th>`;
+
+	// append row onto table
+	table.appendChild(row);
+	
+}
+
+function displayHighScores() {
+	let scores = localStorage.getItem("high-score");
+	if (scores) {
+		// if scores present, add them to the table
+		JSON.parse(scores).forEach(score => addScore(score))
+	} 
+} 
+
+
+
+
+// after adding score
+// add the book to the local storage
+// loop through scoreData and then add book to table
+// at the end of a game
+// grab the current score, the current category, and level
+// create an object from this and send it to addScore so it can be added to the table
+	// in function-> loop through the array, 
+		// if current object is in array and the score is less then the current score 
+		// set that objects score to the new score
+// send this obj to local storage and set it as an item 
+
+
+
+
+// Save score local storage
+function saveHighScore(currentScore) {
+	// save current score to high score
+	localStorage.setItem('High Score', currentScore)
+	// get high score 
+	let previousScore = localStorage.getItem('High Score')
+	if (previousScore) {
+		if (previousScore < currentScore) {
+			// if previousScore is present and less than current score
+			// update previous score to be current score
+			localStorage.setItem("High Score", currentScore)
+		}	
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
 
 
 /* ------------

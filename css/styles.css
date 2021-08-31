@@ -154,7 +154,7 @@ h1 > span {
 }
 
 #options,
-.start {
+.start, #high-scores {
 	border-radius: 50%;
 	/* padding: 10px 10px; */
 	height: 50px;
@@ -167,7 +167,7 @@ h1 > span {
 	color: #11052c;
 }
 
-#options {
+#options, #high-scores {
 	background-color: #f43b86;
 	margin: 0 auto;
 	border-radius: 20px;
@@ -183,8 +183,6 @@ h1 > span {
 }
 
 #next {
-	/* order:5; */
-	/* width: 100px; */
 	justify-content: center;
 	margin-right: 50px;
 }
@@ -194,7 +192,8 @@ h1 > span {
 	display: block;
 }
 
-#end {
+
+#end,  #score-modal {
 	display: none;
 }
 
@@ -358,11 +357,11 @@ p > a {
 		flex-grow: 1;
 	}
 
-	#options {
+	#options, #high-scores {
 		border-radius: 10%;
 		font-size: 20px;
 		color: #eeee;
-		width: 40%;
+		width: 30%;
 		justify-self: center;
 	}
 
