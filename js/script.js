@@ -7,6 +7,9 @@ let category = '18'; // default
 let difficulty = 'easy'; // default
 let url;
 let scoresData;
+let sec = 00;
+let min = 00;
+let isGameOn = false;
 /*----  Cached DOM Elements --- */
 
 const startModal = document.querySelector('.modal');
@@ -51,6 +54,7 @@ function toggleModal(targetModal) {
 
 function init() {
 	// initialize game state variables
+	isGameOn = true;
 	gameTimer();
 	getScores();
 	questionsDB = [];
@@ -108,7 +112,10 @@ function checkAnswer(correctAns, userAns, target) {
 
 // triggered after each round to check if game is over
 function isGameOver() {
-	if (questionNum === questionsDB.length) return true;
+	if (questionNum === questionsDB.length) {
+		isGameOn = false;
+		return true;
+	}
 	setTimeout(function () {
 		render(currentQuestion);
 	}, 500);
@@ -186,9 +193,9 @@ class Question {
 
 function gameTimer() {
 	timer.innerHTML = '';
-	let sec = 00;
-	let min = 00;
-	setInterval(function () {
+	sec = 00;
+	min = 00;
+	let interval = setInterval(function () {
 		timer.innerHTML = '0' + min + ':' + '0' + sec;
 		sec++;
 		if (sec > 9 && sec < 60) {
@@ -197,6 +204,9 @@ function gameTimer() {
 			sec = 00;
 			document.getElementById('timer').innerHTML = '0' + min + ':' + sec;
 			min = +1;
+		}
+		if (!isGameOn) {
+			clearInterval(interval);
 		}
 	}, 1000);
 }
