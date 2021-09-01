@@ -87,7 +87,7 @@ h1 > span {
 
 /* Question Display */
 
-.question {
+.question, #timer {
 	font-family: 'Bungee', cursive;
 	font-size: 3rem;
 	z-index: 1;
@@ -117,6 +117,14 @@ h1 > span {
 	justify-content: center;
 	border-radius: 20px;
 	box-shadow: 5px 10px #888888;
+}
+
+/* timer */
+
+#timer {
+	padding: 20px;
+	color: #00c1d4;
+	margin: 0 auto;
 }
 
 /* Answer Display */

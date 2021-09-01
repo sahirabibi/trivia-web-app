@@ -25,6 +25,7 @@ const currentTopic = document.querySelector('#current-topic');
 const currentQ = document.querySelector('#question');
 const answers = document.querySelector('#answers');
 const modalText = document.querySelector('.modal-textbook');
+let timer = document.getElementById('timer');
 // drop-down menues
 const categoriesMenu = document.querySelector('#category-menu');
 const difficultyMenu = document.querySelector('#difficulty-menu');
@@ -50,7 +51,7 @@ function toggleModal(targetModal) {
 
 function init() {
 	// initialize game state variables
-	clearScores()
+	gameTimer();
 	getScores();
 	questionsDB = [];
 	questionNum = 0;
@@ -118,7 +119,7 @@ function endGame() {
 	toggleModal(startModal);
 	modalText.innerHTML = `<h2>GAME OVER!</h2>`;
 	startBtn.innerText = 'Play Again';
-	score.innerText = `FINAL SCORE: ${currentScore}`;
+	score.innerText = `FINAL SCORE: ${currentScore}\n FINAL TIME: ${timer.innerHTML}`;
 	score.style.display = 'block';
 	// add final stats to high scores
 	updateScores(currentTopic, difficulty, currentScore);
@@ -131,8 +132,11 @@ function getScores() {
 	scoresData = JSON.parse(localStorage.getItem('high-score'));
 	if (scoresData) {
 		// clear table
-		clearScores();
-		scoresData.sort((a, b) => b.score - a.score)
+		let tbody = document.querySelector('tbody');
+		while (tbody.firstChild) {
+			tbody.removeChild(tbody.firstChild);
+		}
+		scoresData.sort((a, b) => b.score - a.score);
 		// if scores present, add them to the table
 		scoresData.forEach((score) => displayScore(score));
 	} else {
@@ -180,11 +184,21 @@ class Question {
 	}
 }
 
-function clearScores() {
-	let tbody = document.querySelector('tbody');
-	while (tbody.firstChild.id !== 'criteria') {
-		tbody.removeChild(tbody.firstChild);
-	}
+function gameTimer() {
+	timer.innerHTML = '';
+	let sec = 00;
+	let min = 00;
+	setInterval(function () {
+		timer.innerHTML = '0' + min + ':' + '0' + sec;
+		sec++;
+		if (sec > 9 && sec < 60) {
+			timer.innerHTML = '0' + min + ':' + sec;
+		} else if (sec > 60) {
+			sec = 00;
+			document.getElementById('timer').innerHTML = '0' + min + ':' + sec;
+			min = +1;
+		}
+	}, 1000);
 }
 
 /* ----------------------- Main Game Events ---------------------*/
